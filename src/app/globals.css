@@ -1,15 +1,17 @@
 @import "tailwindcss";
 
 :root {
-  --color-deep-forest: #123b2a;
-  --color-heritage-green: #1f5b3a;
-  --color-fresh-leaf: #5e8f4e;
-  --color-warm-cream: #fff8e8;
-  --color-soft-oat: #f2e5c9;
-  --color-butter-gold: #e8b84a;
-  --color-warm-terracotta: #c85b3c;
-  --color-espresso: #37251c;
-  --color-charcoal: #20251f;
+  /* Bright coral & sunshine palette (fresh diner, less heavy green) */
+  --color-deep-forest: #c2410c;
+  --color-heritage-green: #ea580c;
+  --color-fresh-leaf: #fb923c;
+  --color-warm-cream: #fffbf5;
+  --color-soft-oat: #fff0e6;
+  --color-butter-gold: #fbbf24;
+  --color-warm-terracotta: #e11d48;
+  --color-espresso: #292524;
+  --color-charcoal: #1c1917;
+  --color-sky-accent: #38bdf8;
 
   --background: var(--color-warm-cream);
   --foreground: var(--color-charcoal);
@@ -62,9 +64,9 @@
   --radius-lg: 1rem;
   --radius-xl: 1.5rem;
   --radius-2xl: 2rem;
-  --shadow-soft: 0 4px 24px rgba(18, 59, 42, 0.08);
-  --shadow-elevated: 0 12px 40px rgba(18, 59, 42, 0.14);
-  --shadow-glow: 0 0 40px rgba(232, 184, 74, 0.25);
+  --shadow-soft: 0 4px 24px rgba(234, 88, 12, 0.1);
+  --shadow-elevated: 0 12px 40px rgba(234, 88, 12, 0.14);
+  --shadow-glow: 0 0 40px rgba(251, 191, 36, 0.35);
 }
 
 *,
@@ -190,20 +192,20 @@ h6 {
 
 .gradient-cream-radial {
   background:
-    radial-gradient(ellipse 80% 60% at 10% 20%, rgba(94, 143, 78, 0.08), transparent 50%),
-    radial-gradient(ellipse 60% 50% at 90% 80%, rgba(232, 184, 74, 0.12), transparent 50%),
-    linear-gradient(180deg, #fffdf7 0%, var(--color-warm-cream) 60%, var(--color-soft-oat) 100%);
+    radial-gradient(ellipse 80% 60% at 10% 20%, rgba(251, 146, 60, 0.12), transparent 50%),
+    radial-gradient(ellipse 60% 50% at 90% 80%, rgba(56, 189, 248, 0.1), transparent 50%),
+    linear-gradient(180deg, #ffffff 0%, var(--color-warm-cream) 60%, var(--color-soft-oat) 100%);
 }
 
 .gradient-green-mesh {
   background:
-    radial-gradient(ellipse 70% 80% at 0% 100%, rgba(94, 143, 78, 0.2), transparent 55%),
-    radial-gradient(ellipse 50% 60% at 100% 0%, rgba(232, 184, 74, 0.12), transparent 50%),
+    radial-gradient(ellipse 70% 80% at 0% 100%, rgba(251, 191, 36, 0.25), transparent 55%),
+    radial-gradient(ellipse 50% 60% at 100% 0%, rgba(56, 189, 248, 0.15), transparent 50%),
     linear-gradient(
       135deg,
-      var(--color-deep-forest) 0%,
-      var(--color-heritage-green) 50%,
-      #2a6b45 100%
+      #ea580c 0%,
+      #f97316 45%,
+      #fb923c 100%
     );
 }
 
@@ -259,8 +261,8 @@ h6 {
 
 .glow-green {
   box-shadow:
-    0 4px 24px rgba(18, 59, 42, 0.12),
-    0 0 60px rgba(94, 143, 78, 0.15);
+    0 4px 24px rgba(234, 88, 12, 0.12),
+    0 0 60px rgba(251, 146, 60, 0.2);
 }
 
 .glow-gold {

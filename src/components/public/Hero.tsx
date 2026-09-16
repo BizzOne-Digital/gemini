@@ -1,7 +1,9 @@
 import Image from "next/image";
-import { resolveImageSrc } from "@/lib/resolve-image";
 import Link from "next/link";
 import { ChevronRight, Leaf } from "lucide-react";
+import { resolveImageSrc } from "@/lib/resolve-image";
+import { HOMESTYLE_TAGLINE } from "@/lib/copy";
+import { SITE_PHOTOS } from "@/lib/site-photos";
 import { FadeIn, FadeInImmediate } from "@/components/public/animations/FadeIn";
 
 interface HeroProps {
@@ -13,12 +15,12 @@ interface HeroProps {
   imageAlt?: string;
 }
 
-const HERO_IMAGE = "/images/hero-breakfast.jpg";
+const HERO_IMAGE = SITE_PHOTOS.hero;
 
 export function Hero({
   headline = "Homemade Comfort Food, Served with Heart.",
-  subheadline = "From hearty breakfasts to slow-cooked favourites and freshly baked pies, enjoy the flavours of home in the heart of Waterloo.",
-  primaryCta = { label: "Explore Our Menu", href: "/menu" },
+  subheadline = HOMESTYLE_TAGLINE,
+  primaryCta = { label: "See What's Cooking", href: "/menu" },
   secondaryCta = { label: "Book a Table", href: "/booking" },
   image = HERO_IMAGE,
   imageAlt = "Hearty homestyle breakfast with pancakes, eggs, bacon, and coffee at Homestyle Diner",
@@ -95,6 +97,8 @@ export function Hero({
             </Link>
             <Link
               href={secondaryCta.href}
+              target={secondaryCta.href.startsWith("http") ? "_blank" : undefined}
+              rel={secondaryCta.href.startsWith("http") ? "noopener noreferrer" : undefined}
               className="inline-flex h-12 items-center rounded-full border-2 border-heritage-green/30 bg-gradient-to-br from-white/90 to-warm-cream/80 px-6 text-sm font-semibold uppercase tracking-wider text-heritage-green backdrop-blur-sm transition-all hover:border-heritage-green hover:shadow-soft"
             >
               {secondaryCta.label}
@@ -102,7 +106,7 @@ export function Hero({
           </FadeIn>
 
           <FadeIn delay={0.65} className="mt-10">
-            <p className="text-xs font-semibold uppercase tracking-[0.25em] text-gradient-gold">
+            <p className="text-xs font-bold uppercase tracking-[0.25em] text-espresso/90">
               Dine-In • Takeout • Catering
             </p>
           </FadeIn>

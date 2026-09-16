@@ -1,0 +1,1017 @@
+[
+  {
+    "name": "2 Eggs, Homefries or Pancakes, and Toast",
+    "price": 8.99,
+    "description": "2 Eggs, Homefries or Pancakes, and Toast",
+    "section": "Breakfast",
+    "websiteCategories": "Breakfast"
+  },
+  {
+    "name": "BEC Sandwich",
+    "price": 12.49,
+    "description": "Bacon, egg, cheddar cheese",
+    "section": "Breakfast",
+    "websiteCategories": "Breakfast"
+  },
+  {
+    "name": "BLT Sandwich",
+    "price": 11.99,
+    "description": "Bacon, lettuce, tomato",
+    "section": "Breakfast",
+    "websiteCategories": "Breakfast"
+  },
+  {
+    "name": "BLT Wrap",
+    "price": 13.99,
+    "description": "Bacon, lettuce, tomato, cheddar cheese, mozza & mayo",
+    "section": "Breakfast",
+    "websiteCategories": "Breakfast"
+  },
+  {
+    "name": "Bacon slices (5)",
+    "price": 5.49,
+    "description": "5 Bacon Slices",
+    "section": "Breakfast",
+    "websiteCategories": "Breakfast"
+  },
+  {
+    "name": "Blueberry Burst Pancake",
+    "price": 12.99,
+    "description": "Choice of 1/2 stack or full stack",
+    "section": "Breakfast",
+    "websiteCategories": "Breakfast"
+  },
+  {
+    "name": "Canadian Benedict",
+    "price": 16.49,
+    "description": "Two poached eggs, Peameal, served on English muffin topped with hollandaise sauce",
+    "section": "Breakfast",
+    "websiteCategories": "Breakfast"
+  },
+  {
+    "name": "Chocolatey Chip Pancake",
+    "price": 11.99,
+    "description": "Choice of 1/2 stack or full stack",
+    "section": "Breakfast",
+    "websiteCategories": "Breakfast"
+  },
+  {
+    "name": "Cinnamon Raisin French Toast",
+    "price": 11.99,
+    "description": "Choice of 1/2 stack or full stack",
+    "section": "Breakfast",
+    "websiteCategories": "Breakfast"
+  },
+  {
+    "name": "Classic Benedict",
+    "price": 15.49,
+    "description": "two poached eggs, ham, or bacon served on english muffin topped with hollandaise sauce",
+    "section": "Breakfast",
+    "websiteCategories": "Breakfast"
+  },
+  {
+    "name": "Classic Omelette",
+    "price": 14.49,
+    "description": "Ham and Cheddar",
+    "section": "Breakfast",
+    "websiteCategories": "Breakfast"
+  },
+  {
+    "name": "Egg (1)",
+    "price": 2.49,
+    "description": "",
+    "section": "Breakfast",
+    "websiteCategories": "Breakfast"
+  },
+  {
+    "name": "Fruit Combo",
+    "price": 12.99,
+    "description": "Fresh Fruits served with cottage cheese and toast",
+    "section": "Breakfast",
+    "websiteCategories": "Breakfast"
+  },
+  {
+    "name": "Griller Cheddar Cheese",
+    "price": 10.99,
+    "description": "Add ham or bacon",
+    "section": "Breakfast",
+    "websiteCategories": "Breakfast"
+  },
+  {
+    "name": "Ham Slices (2)",
+    "price": 5.49,
+    "description": "2 Ham Slices",
+    "section": "Breakfast",
+    "websiteCategories": "Breakfast"
+  },
+  {
+    "name": "Hollandaise Sauce",
+    "price": 2.49,
+    "description": "",
+    "section": "Breakfast",
+    "websiteCategories": "Breakfast"
+  },
+  {
+    "name": "Homefries",
+    "price": 5.99,
+    "description": "",
+    "section": "Breakfast",
+    "websiteCategories": "Breakfast, Dinner, Lunch"
+  },
+  {
+    "name": "Homestyle Favourite",
+    "price": 17.49,
+    "description": "Two poached eggs, Peameal, sautéed mushrooms and cheddar cheese, served on English muffin topped with hollandaise sauce",
+    "section": "Breakfast",
+    "websiteCategories": "Breakfast"
+  },
+  {
+    "name": "Homstyle Sandwich",
+    "price": 16.99,
+    "description": "Peameal, eggs, tomato, mayo, lettuce, cheddar cheese",
+    "section": "Breakfast",
+    "websiteCategories": "Breakfast"
+  },
+  {
+    "name": "Light and Lively",
+    "price": 11.99,
+    "description": "2 poached eggs served on whole wheat toast and fresh fruit",
+    "section": "Breakfast",
+    "websiteCategories": "Breakfast"
+  },
+  {
+    "name": "Meat Lovers Omelette",
+    "price": 15.99,
+    "description": "Ham, bacon, sausage links, and cheddar cheese",
+    "section": "Breakfast",
+    "websiteCategories": "Breakfast"
+  },
+  {
+    "name": "Oktoberfest Sausage (1)",
+    "price": 6.99,
+    "description": "1 Oktoberfest Sausage",
+    "section": "Breakfast",
+    "websiteCategories": "Breakfast"
+  },
+  {
+    "name": "Ole Albert",
+    "price": 16.49,
+    "description": "Three eggs, two slices of bacon, ham, sausage links, homefries, pancakes and toast.",
+    "section": "Breakfast",
+    "websiteCategories": "Breakfast"
+  },
+  {
+    "name": "Ole Hazel",
+    "price": 16.99,
+    "description": "Two eggs, four turkey sausage links, two slices of French toast and fresh fruit.",
+    "section": "Breakfast",
+    "websiteCategories": "Breakfast"
+  },
+  {
+    "name": "Ooey Gooey Good Omelette",
+    "price": 14.49,
+    "description": "Cheddar and Mozza",
+    "section": "Breakfast",
+    "websiteCategories": "Breakfast"
+  },
+  {
+    "name": "Orginal French Toast",
+    "price": 9.99,
+    "description": "Choice of 1/2 stack or full stack",
+    "section": "Breakfast",
+    "websiteCategories": "Breakfast"
+  },
+  {
+    "name": "Original Pancakes",
+    "price": 10.99,
+    "description": "Choice of 1/2 stack or full stack",
+    "section": "Breakfast",
+    "websiteCategories": "Breakfast"
+  },
+  {
+    "name": "Parkdale Sandwich",
+    "price": 16.99,
+    "description": "Ham, turkey and mozzarella between French toast",
+    "section": "Breakfast",
+    "websiteCategories": "Breakfast"
+  },
+  {
+    "name": "Peameal Slices (4)",
+    "price": 6.49,
+    "description": "4 Peameal Slices",
+    "section": "Breakfast",
+    "websiteCategories": "Breakfast"
+  },
+  {
+    "name": "Sausage Links (4)",
+    "price": 5.49,
+    "description": "4 Sausage Links",
+    "section": "Breakfast",
+    "websiteCategories": "Breakfast"
+  },
+  {
+    "name": "Simply Canadian Omelette",
+    "price": 15.99,
+    "description": "Bacon, cheddar cheese, and mushrooms",
+    "section": "Breakfast",
+    "websiteCategories": "Breakfast"
+  },
+  {
+    "name": "Single French Toast",
+    "price": 4.59,
+    "description": "Quantity - 1",
+    "section": "Breakfast",
+    "websiteCategories": "Breakfast"
+  },
+  {
+    "name": "Single Pancake",
+    "price": 3.59,
+    "description": "",
+    "section": "Breakfast",
+    "websiteCategories": "Breakfast"
+  },
+  {
+    "name": "Toast (1)",
+    "price": 2.99,
+    "description": "",
+    "section": "Breakfast",
+    "websiteCategories": "Breakfast"
+  },
+  {
+    "name": "Tomatoes",
+    "price": 1.99,
+    "description": "",
+    "section": "Breakfast",
+    "websiteCategories": "Breakfast"
+  },
+  {
+    "name": "Turkey Sausage (4)",
+    "price": 6.49,
+    "description": "4 Turkey Sausages",
+    "section": "Breakfast",
+    "websiteCategories": "Breakfast"
+  },
+  {
+    "name": "Turkey Sausage or Smoked Meat",
+    "price": 16.49,
+    "description": "Two poached eggs, turkey sausage or smoked meat, served on English muffin topped with hollandaise sauce",
+    "section": "Breakfast",
+    "websiteCategories": "Breakfast"
+  },
+  {
+    "name": "Veggie Benedict",
+    "price": 16.49,
+    "description": "Two poached eggs, tomato, red onion, sauteed mushrooms, served on English muffin topped with hollandaise sauce",
+    "section": "Breakfast",
+    "websiteCategories": "Breakfast"
+  },
+  {
+    "name": "Veggie Omelette",
+    "price": 15.49,
+    "description": "Peppers, onions, tomato, mushrooms, and spinach",
+    "section": "Breakfast",
+    "websiteCategories": "Breakfast"
+  },
+  {
+    "name": "Western Omelettes",
+    "price": 14.49,
+    "description": "Ham and Onion",
+    "section": "Breakfast",
+    "websiteCategories": "Breakfast"
+  },
+  {
+    "name": "Western Sandwich",
+    "price": 11.99,
+    "description": "Ham and Onion",
+    "section": "Breakfast",
+    "websiteCategories": "Breakfast"
+  },
+  {
+    "name": "BLT Sandwich",
+    "price": 11.99,
+    "description": "All sandwiches include pickle, a choice of french fries or coleslaw, served on white or whole wheat",
+    "section": "Lunch",
+    "websiteCategories": "Dinner, Lunch"
+  },
+  {
+    "name": "Bacon, Egg & Cheddar Sandwich",
+    "price": 11.99,
+    "description": "All sandwiches include pickle, a choice of french fries or coleslaw, served on white or whole wheat bread.",
+    "section": "Lunch",
+    "websiteCategories": "Dinner, Lunch"
+  },
+  {
+    "name": "Caeser Salad",
+    "price": 9.99,
+    "description": "Romaine, fresh bacon bits and croutons, tossed in aged asiago and parmesan dressing",
+    "section": "Lunch",
+    "websiteCategories": "Dinner, Lunch"
+  },
+  {
+    "name": "Coleslaw",
+    "price": 2.99,
+    "description": "",
+    "section": "Lunch",
+    "websiteCategories": "Dinner, Lunch"
+  },
+  {
+    "name": "Grilled Cheddar Cheese",
+    "price": 10.99,
+    "description": "All sandwiches include pickle, a choice of french fries or coleslaw, served on white or whole wheat bread.",
+    "section": "Lunch",
+    "websiteCategories": "Dinner, Lunch"
+  },
+  {
+    "name": "House Salad",
+    "price": 7.99,
+    "description": "Mixed greens, fresh veggies, served with choice of dressing",
+    "section": "Lunch",
+    "websiteCategories": "Dinner, Lunch"
+  },
+  {
+    "name": "Julienne Signature Salad",
+    "price": 17.49,
+    "description": "Mixed greens, fresh veggies, cheddar cheese, and your choice of ham, beef or turkey, served with choice of dressing",
+    "section": "Lunch",
+    "websiteCategories": "Dinner, Lunch"
+  },
+  {
+    "name": "Meatloaf Grilled Cheese",
+    "price": 13.99,
+    "description": "Warm meatloaf and cheddar",
+    "section": "Lunch",
+    "websiteCategories": "Dinner, Lunch"
+  },
+  {
+    "name": "Oh Canada Grilled Cheese",
+    "price": 11.99,
+    "description": "Mozzarella and grilled tomato",
+    "section": "Lunch",
+    "websiteCategories": "Dinner, Lunch"
+  },
+  {
+    "name": "Pucker Up Grilled Cheese",
+    "price": 12.49,
+    "description": "Breaded pickle spears and cheddar",
+    "section": "Lunch",
+    "websiteCategories": "Dinner, Lunch"
+  },
+  {
+    "name": "Schnitzel Grilled Cheese",
+    "price": 13.99,
+    "description": "Crispy schnitzel & cheddar",
+    "section": "Lunch",
+    "websiteCategories": "Dinner, Lunch"
+  },
+  {
+    "name": "Smoked Meat on Rye",
+    "price": 12.99,
+    "description": "All sandwiches include pickle, a choice of french fries or coleslaw, served on white or whole wheat bread.",
+    "section": "Lunch",
+    "websiteCategories": "Dinner, Lunch"
+  },
+  {
+    "name": "The Ultimate Grilled Cheese",
+    "price": 13.99,
+    "description": "Peameal, Red onions, Cheddar and mozzarella",
+    "section": "Lunch",
+    "websiteCategories": "Dinner, Lunch"
+  },
+  {
+    "name": "Turkey or Beef Sandwich",
+    "price": 12.99,
+    "description": "All sandwiches include pickle, a choice of french fries or coleslaw, served on white or whole wheat bread.",
+    "section": "Lunch",
+    "websiteCategories": "Dinner, Lunch"
+  },
+  {
+    "name": "Western Sandwich",
+    "price": 11.99,
+    "description": "All sandwiches include pickle, a choice of french fries or coleslaw, served on white or whole wheat bread.",
+    "section": "Lunch",
+    "websiteCategories": "Dinner, Lunch"
+  },
+  {
+    "name": "Banquet Burger",
+    "price": 17.49,
+    "description": "Topped with cheddar cheese and bacon",
+    "section": "Dinner",
+    "websiteCategories": "Dinner, Lunch"
+  },
+  {
+    "name": "Battered Mushrooms",
+    "price": 10.29,
+    "description": "Served with ranch dressing",
+    "section": "Dinner",
+    "websiteCategories": "Dinner, Lunch"
+  },
+  {
+    "name": "Battered onion rings",
+    "price": 9.49,
+    "description": "",
+    "section": "Dinner",
+    "websiteCategories": "Dinner, Lunch"
+  },
+  {
+    "name": "Beef Liver and Onions",
+    "price": 17.49,
+    "description": "With choice of bacon",
+    "section": "Dinner",
+    "websiteCategories": "Dinner"
+  },
+  {
+    "name": "Beef Schnitzel",
+    "price": 19.99,
+    "description": "Schnitzel with roast beef topped with gravy",
+    "section": "Dinner",
+    "websiteCategories": "Dinner"
+  },
+  {
+    "name": "Breaded Pickle Spears",
+    "price": 9.99,
+    "description": "Served with ranch dressing",
+    "section": "Dinner",
+    "websiteCategories": "Dinner, Lunch"
+  },
+  {
+    "name": "Breaded Wings",
+    "price": 17.49,
+    "description": "Breaded Wings served with French fries and Coleslaw",
+    "section": "Dinner",
+    "websiteCategories": "Dinner"
+  },
+  {
+    "name": "Breaded Wings",
+    "price": 12.49,
+    "description": "Choice of Sauce: BBQ or Buffalo or Honey Garlic",
+    "section": "Dinner",
+    "websiteCategories": "Dinner, Lunch"
+  },
+  {
+    "name": "Burger",
+    "price": 15.49,
+    "description": "",
+    "section": "Dinner",
+    "websiteCategories": "Dinner, Lunch"
+  },
+  {
+    "name": "Cauliflower Bites",
+    "price": 9.99,
+    "description": "",
+    "section": "Dinner",
+    "websiteCategories": "Dinner, Lunch"
+  },
+  {
+    "name": "Cheddar Cheeseburger - Kids",
+    "price": 10.99,
+    "description": "Kids Meal - Include choice of potato or vegetable, small beverage or pop and ice cream",
+    "section": "Dinner",
+    "websiteCategories": "Dinner, Lunch"
+  },
+  {
+    "name": "Cheddar Mozza Cheese Burger",
+    "price": 16.99,
+    "description": "Cheddar and Mozzarella Cheese",
+    "section": "Dinner",
+    "websiteCategories": "Dinner, Lunch"
+  },
+  {
+    "name": "Chicken Bacon Ranch Salad",
+    "price": 18.99,
+    "description": "Mixed greens, fresh veggies, cheddar, Mozza, homemade croutons, bacon, choice of: crispy or grilled chicken topped with ranch dressing",
+    "section": "Dinner",
+    "websiteCategories": "Dinner, Lunch"
+  },
+  {
+    "name": "Chicken Caeser Wrap",
+    "price": 16.99,
+    "description": "Romaine, bacon, aged asiago, parmesan dressing, choice of crispy or grilled chicken",
+    "section": "Dinner",
+    "websiteCategories": "Dinner"
+  },
+  {
+    "name": "Chicken Fingers",
+    "price": 17.49,
+    "description": "Chicken Fingers served with French fries and Coleslaw",
+    "section": "Dinner",
+    "websiteCategories": "Dinner"
+  },
+  {
+    "name": "Chicken Fingers - Kids",
+    "price": 9.99,
+    "description": "Kids Meal - Include choice of potato or vegetable, small beverage or pop and ice cream",
+    "section": "Dinner",
+    "websiteCategories": "Dinner, Lunch"
+  },
+  {
+    "name": "Crispy Chicken Ranch Wrap",
+    "price": 16.99,
+    "description": "Chicken tenders, red onion, lettuce, cheddar, buttermilk ranch",
+    "section": "Dinner",
+    "websiteCategories": "Dinner"
+  },
+  {
+    "name": "Dinner Roll",
+    "price": 1.99,
+    "description": "",
+    "section": "Dinner",
+    "websiteCategories": "Dinner"
+  },
+  {
+    "name": "Fish & Chips - Kids",
+    "price": 9.49,
+    "description": "Kids Meal - Include choice of potato or vegetable, small beverage or pop and ice cream",
+    "section": "Dinner",
+    "websiteCategories": "Dinner, Lunch"
+  },
+  {
+    "name": "Fish (Haddock)",
+    "price": 16.99,
+    "description": "Choice of Breaded, Battered or Grilled",
+    "section": "Dinner",
+    "websiteCategories": "Dinner"
+  },
+  {
+    "name": "French Fries",
+    "price": 5.99,
+    "description": "",
+    "section": "Dinner",
+    "websiteCategories": "Dinner, Lunch"
+  },
+  {
+    "name": "Fringer Poutine",
+    "price": 11.99,
+    "description": "Fries, Onion Rings, Mozza, Cheddar and Beef Gravy",
+    "section": "Dinner",
+    "websiteCategories": "Dinner, Lunch"
+  },
+  {
+    "name": "Garlic Bread",
+    "price": 8.59,
+    "description": "Choice of : Original or Cheddar & Mozza or Loaded ( bacon, cheddar, Mozza)",
+    "section": "Dinner",
+    "websiteCategories": "Dinner, Lunch"
+  },
+  {
+    "name": "Gravy",
+    "price": 1.79,
+    "description": "",
+    "section": "Dinner",
+    "websiteCategories": "Dinner, Lunch"
+  },
+  {
+    "name": "Griller Cheddar Cheese - Kids",
+    "price": 9.99,
+    "description": "Kids Meal - Include choice of potato or vegetable, small beverage or pop and ice cream",
+    "section": "Dinner",
+    "websiteCategories": "Dinner, Lunch"
+  },
+  {
+    "name": "Ham Club",
+    "price": 16.49,
+    "description": "Bacon, Lettuce, tomato, and ham between three slices of Texas toast",
+    "section": "Dinner",
+    "websiteCategories": "Dinner"
+  },
+  {
+    "name": "Hamburger - Kids",
+    "price": 10.99,
+    "description": "Kids Meal - Include choice of potato or vegetable, small beverage or pop and ice cream",
+    "section": "Dinner",
+    "websiteCategories": "Dinner, Lunch"
+  },
+  {
+    "name": "Homemade Soup",
+    "price": 5.49,
+    "description": "Choice of size: bowl or cup",
+    "section": "Dinner",
+    "websiteCategories": "Dinner, Lunch"
+  },
+  {
+    "name": "Homestyle",
+    "price": 16.99,
+    "description": "Peameal bacon, eggs, tomato, cheddar cheese, lettuce and mayo",
+    "section": "Dinner",
+    "websiteCategories": "Dinner"
+  },
+  {
+    "name": "Homestyle Burger",
+    "price": 17.49,
+    "description": "Topped with grilled onions, BBQ sauce, mozza and cheddar",
+    "section": "Dinner",
+    "websiteCategories": "Dinner, Lunch"
+  },
+  {
+    "name": "Homestyle Schnitzel",
+    "price": 17.99,
+    "description": "Topped with grilled onions, BBQ sauce, cheddar and mozzarella cheese",
+    "section": "Dinner",
+    "websiteCategories": "Dinner"
+  },
+  {
+    "name": "Homestyle Signature Salad",
+    "price": 18.99,
+    "description": "Turkey, mixed greens, fresh veggies, hard boiled egg, sunflower seeds, mozzarella and cheddar cheese, served with balsamic dressing.",
+    "section": "Dinner",
+    "websiteCategories": "Dinner, Lunch"
+  },
+  {
+    "name": "Hot Beef Sandwich",
+    "price": 17.99,
+    "description": "All Hot Sandwiches include vegetable, coleslaw or sauerkraut, and choice of potato",
+    "section": "Dinner",
+    "websiteCategories": "Dinner"
+  },
+  {
+    "name": "Hot Hamburger (2 Patties)",
+    "price": 18.49,
+    "description": "All Hot Sandwiches include vegetable, coleslaw or sauerkraut, and choice of potato",
+    "section": "Dinner",
+    "websiteCategories": "Dinner"
+  },
+  {
+    "name": "Hot Turkey Sandwich",
+    "price": 18.49,
+    "description": "All Hot Sandwiches include vegetable, coleslaw or sauerkraut, and choice of potato",
+    "section": "Dinner",
+    "websiteCategories": "Dinner"
+  },
+  {
+    "name": "Meatloaf",
+    "price": 17.49,
+    "description": "Homemade meatloaf topped with gravy",
+    "section": "Dinner",
+    "websiteCategories": "Dinner"
+  },
+  {
+    "name": "Meatloaf Schnitzel",
+    "price": 19.49,
+    "description": "Schnitzel with homemade meatloaf topped with gravy",
+    "section": "Dinner",
+    "websiteCategories": "Dinner"
+  },
+  {
+    "name": "Mozza & Shroom Burger",
+    "price": 17.49,
+    "description": "Topped with grilled mushrooms and mozzarella cheese",
+    "section": "Dinner",
+    "websiteCategories": "Dinner, Lunch"
+  },
+  {
+    "name": "Mushroom & Gravy",
+    "price": 17.99,
+    "description": "Topped with sautéed Mushrooms & Gravy",
+    "section": "Dinner",
+    "websiteCategories": "Dinner"
+  },
+  {
+    "name": "Muskoka",
+    "price": 18.99,
+    "description": "Topped with Peameal Bacon and Cheddar Cheese",
+    "section": "Dinner",
+    "websiteCategories": "Dinner"
+  },
+  {
+    "name": "Oktoberfest Sausage",
+    "price": 16.99,
+    "description": "",
+    "section": "Dinner",
+    "websiteCategories": "Dinner"
+  },
+  {
+    "name": "Oktoberfest Schnitzel",
+    "price": 19.49,
+    "description": "Schnitzel with an Oktoberfest sausage",
+    "section": "Dinner",
+    "websiteCategories": "Dinner"
+  },
+  {
+    "name": "Original Poutine",
+    "price": 10.99,
+    "description": "Fries Topped with Cheddar and Beef Gravy",
+    "section": "Dinner",
+    "websiteCategories": "Dinner, Lunch"
+  },
+  {
+    "name": "Original Schnitzels",
+    "price": 17.99,
+    "description": "Pork Schnitzel hand breaded in fresh seasoned bread crumbs",
+    "section": "Dinner",
+    "websiteCategories": "Dinner"
+  },
+  {
+    "name": "Parkdale",
+    "price": 16.99,
+    "description": "Turkey, ham and mozzarella cheese between French toast",
+    "section": "Dinner",
+    "websiteCategories": "Dinner"
+  },
+  {
+    "name": "Reuben",
+    "price": 16.99,
+    "description": "Smoked meat, sauerkraut and mozzarella cheese on grilled rye bread",
+    "section": "Dinner",
+    "websiteCategories": "Dinner"
+  },
+  {
+    "name": "Ribs",
+    "price": 19.49,
+    "description": "Choice of sauce: Honey Garlic or BBQ",
+    "section": "Dinner",
+    "websiteCategories": "Dinner"
+  },
+  {
+    "name": "Ribs & Schnitzel",
+    "price": 21.49,
+    "description": "Schnitzel with Ribs (BBQ or Honey Garlic)",
+    "section": "Dinner",
+    "websiteCategories": "Dinner"
+  },
+  {
+    "name": "Ringer Burger",
+    "price": 17.49,
+    "description": "Topped with cheddar, onion rings and BBQ sauce",
+    "section": "Dinner",
+    "websiteCategories": "Dinner, Lunch"
+  },
+  {
+    "name": "Roast Beef",
+    "price": 17.99,
+    "description": "",
+    "section": "Dinner",
+    "websiteCategories": "Dinner"
+  },
+  {
+    "name": "Roast Turkey",
+    "price": 18.49,
+    "description": "Choice of White meat only",
+    "section": "Dinner",
+    "websiteCategories": "Dinner"
+  },
+  {
+    "name": "Rolled Ribs - 30 Year Favourite",
+    "price": 19.99,
+    "description": "Seasoned Ribs stuffed with our Gram's famous breading stuffing recipe (Thursday and Friday evening only)",
+    "section": "Dinner",
+    "websiteCategories": "Dinner"
+  },
+  {
+    "name": "Schnitzel Club on a Bun",
+    "price": 17.99,
+    "description": "Schnitzel topped with bacon, tomato, lettuce, mayo, mozza on a Kaiser",
+    "section": "Dinner",
+    "websiteCategories": "Dinner, Lunch"
+  },
+  {
+    "name": "Smoked Meat Club",
+    "price": 17.49,
+    "description": "Bacon, lettuce, tomato, and smoked meat between three slices of Texas toast",
+    "section": "Dinner",
+    "websiteCategories": "Dinner"
+  },
+  {
+    "name": "Son of a Bacon",
+    "price": 12.99,
+    "description": "Fries, Cheddar Cheese, Bacon and Beef Gravy",
+    "section": "Dinner",
+    "websiteCategories": "Dinner, Lunch"
+  },
+  {
+    "name": "Sweet Potato Fries",
+    "price": 7.99,
+    "description": "",
+    "section": "Dinner",
+    "websiteCategories": "Dinner, Lunch"
+  },
+  {
+    "name": "Turkey Club",
+    "price": 17.49,
+    "description": "Bacon, lettuce, tomato, and turkey between three slices of Texas toast",
+    "section": "Dinner",
+    "websiteCategories": "Dinner"
+  },
+  {
+    "name": "Turkey Club Wrap",
+    "price": 16.99,
+    "description": "Roasted turkey, bacon, lettuce, tomato, mayo",
+    "section": "Dinner",
+    "websiteCategories": "Dinner"
+  },
+  {
+    "name": "Turkey Dinner - Kids",
+    "price": 9.99,
+    "description": "White Meat Only Kids Meal - Include choice of potato or vegetable, small beverage or pop and ice cream",
+    "section": "Dinner",
+    "websiteCategories": "Dinner, Lunch"
+  },
+  {
+    "name": "Turkey Lurkey",
+    "price": 12.99,
+    "description": "Fries, pulled turkey, mozzarella and turkey gravy",
+    "section": "Dinner",
+    "websiteCategories": "Dinner, Lunch"
+  },
+  {
+    "name": "Veggie Wrap",
+    "price": 16.99,
+    "description": "Shredded carrot, mushrooms, tomatoes, cucumber & cheddar with balsamic dressing",
+    "section": "Dinner",
+    "websiteCategories": "Dinner"
+  },
+  {
+    "name": "Brownie Sundae",
+    "price": 8.49,
+    "description": "Warm homemade brownie topped with ice cream, chocolate and whipped cream",
+    "section": "Desserts",
+    "websiteCategories": "Desserts"
+  },
+  {
+    "name": "Caramel Pecan Ice Cream Square",
+    "price": 8.49,
+    "description": "Thick vanilla ice cream layered on top of homemade granola and pecan crumble, coated with caramel sauce",
+    "section": "Desserts",
+    "websiteCategories": "Desserts"
+  },
+  {
+    "name": "Ice Cream",
+    "price": 4.49,
+    "description": "",
+    "section": "Desserts",
+    "websiteCategories": "Desserts"
+  },
+  {
+    "name": "Pies",
+    "price": 7.49,
+    "description": "Selection of Homemade Pies baked fresh daily",
+    "section": "Desserts",
+    "websiteCategories": "Desserts"
+  },
+  {
+    "name": "Specialty Dessert",
+    "price": 8.49,
+    "description": "Daily selection of cheesecakes, squares and cakes",
+    "section": "Desserts",
+    "websiteCategories": "Desserts"
+  },
+  {
+    "name": "Sundaes",
+    "price": 7.99,
+    "description": "Vanilla, Chocolate, Butterscotch",
+    "section": "Desserts",
+    "websiteCategories": "Desserts"
+  },
+  {
+    "name": "Australia - Shiraz (6oz)",
+    "price": 8.99,
+    "description": "Yellow Tail - Red Wine",
+    "section": "Drinks",
+    "websiteCategories": "Drinks"
+  },
+  {
+    "name": "Australia - Yellow Tail (6oz)",
+    "price": 8.49,
+    "description": "Chardonnay - White Wine",
+    "section": "Drinks",
+    "websiteCategories": "Drinks"
+  },
+  {
+    "name": "Beer - Domestic",
+    "price": 6.49,
+    "description": "Coors light, Bud light, Canadian, Export, Brick Red Baron",
+    "section": "Drinks",
+    "websiteCategories": "Drinks"
+  },
+  {
+    "name": "Beer - Premium",
+    "price": 6.99,
+    "description": "Alexander Keith, Mill Street Organic, Waterloo Dark",
+    "section": "Drinks",
+    "websiteCategories": "Drinks"
+  },
+  {
+    "name": "Bottled Water",
+    "price": 2.69,
+    "description": "",
+    "section": "Drinks",
+    "websiteCategories": "Drinks"
+  },
+  {
+    "name": "Chocolate Milk - 12oz",
+    "price": 3.69,
+    "description": "",
+    "section": "Drinks",
+    "websiteCategories": "Drinks"
+  },
+  {
+    "name": "Cocktail",
+    "price": 7.99,
+    "description": "Bloody Mary, Bloody Caesar, Screwdriver, Fizzy Navel",
+    "section": "Drinks",
+    "websiteCategories": "Drinks"
+  },
+  {
+    "name": "France -Merlot (6oz)",
+    "price": 8.49,
+    "description": "Yvon Mau - Red Wine",
+    "section": "Drinks",
+    "websiteCategories": "Drinks"
+  },
+  {
+    "name": "Freshly Brewed Coffee",
+    "price": 3.29,
+    "description": "",
+    "section": "Drinks",
+    "websiteCategories": "Drinks"
+  },
+  {
+    "name": "Herbal Tea",
+    "price": 3.69,
+    "description": "Lemon, peppermint, green apple cinnamon, earl grey",
+    "section": "Drinks",
+    "websiteCategories": "Drinks"
+  },
+  {
+    "name": "Hot Chocolate",
+    "price": 3.69,
+    "description": "Topped with whipped cream",
+    "section": "Drinks",
+    "websiteCategories": "Drinks"
+  },
+  {
+    "name": "Italy - Folonari (6oz)",
+    "price": 8.99,
+    "description": "Pinot Grigio - White Wine",
+    "section": "Drinks",
+    "websiteCategories": "Drinks"
+  },
+  {
+    "name": "Juice - 12oz",
+    "price": 3.69,
+    "description": "Apple, orange, tomato, grapefruit, cranberry",
+    "section": "Drinks",
+    "websiteCategories": "Drinks"
+  },
+  {
+    "name": "Liquor",
+    "price": 6.99,
+    "description": "Vodka, Canadian Club, Bacardi White, Appleton Spiced, Gin",
+    "section": "Drinks",
+    "websiteCategories": "Drinks"
+  },
+  {
+    "name": "Milk - 12oz",
+    "price": 3.69,
+    "description": "",
+    "section": "Drinks",
+    "websiteCategories": "Drinks"
+  },
+  {
+    "name": "Milkshakes",
+    "price": 5.99,
+    "description": "Vanilla, Strawberry, Chocolate",
+    "section": "Drinks",
+    "websiteCategories": "Drinks"
+  },
+  {
+    "name": "Ontario - Jackson Triggs (6oz)",
+    "price": 7.99,
+    "description": "Cabernet Sauvignon - Red Wine",
+    "section": "Drinks",
+    "websiteCategories": "Drinks"
+  },
+  {
+    "name": "Ontario - Jackson Triggs (6oz)",
+    "price": 7.99,
+    "description": "Smooth White",
+    "section": "Drinks",
+    "websiteCategories": "Drinks"
+  },
+  {
+    "name": "Soft Drink",
+    "price": 2.49,
+    "description": "Pepsi, diet Pepsi, gingerale, 7 up, root beer, ice tea, club soda",
+    "section": "Drinks",
+    "websiteCategories": "Drinks"
+  },
+  {
+    "name": "Tea",
+    "price": 3.29,
+    "description": "",
+    "section": "Drinks",
+    "websiteCategories": "Drinks"
+  },
+  {
+    "name": "Denver Western Wrap",
+    "price": 13.99,
+    "description": "3 eggs, ham, onion, pepper and cheddar cheese",
+    "section": "Uncategorized",
+    "websiteCategories": "Uncategorized"
+  },
+  {
+    "name": "Fresh Fruit Cup",
+    "price": 8.99,
+    "description": "",
+    "section": "Uncategorized",
+    "websiteCategories": "Uncategorized"
+  }
+]

@@ -13,6 +13,7 @@ import {
 import { BreadcrumbStructuredData } from "@/components/seo/StructuredData";
 import type { ServiceData } from "@/types/site";
 import { resolveImageSrc } from "@/lib/resolve-image";
+import { SITE_PHOTOS } from "@/lib/site-photos";
 
 export async function generateMetadata(): Promise<Metadata> {
   return buildPageMetadata("/services", {
@@ -25,19 +26,15 @@ export async function generateMetadata(): Promise<Metadata> {
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://homestylediner.ca";
 
 const SERVICE_IMAGES: Record<string, string> = {
-  breakfast:
-    "https://images.unsplash.com/photo-1559339352-11d035aa65de?w=800&q=80",
-  lunch: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=800&q=80",
-  dinner:
-    "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80",
-  bakery: "/images/service-bakery.png",
-  "bakery-desserts": "/images/service-bakery.png",
-  "dine-in":
-    "https://images.unsplash.com/photo-1559339352-11d035aa65de?w=800&q=80",
-  takeout:
-    "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=800&q=80",
-  catering: "/images/service-catering.jpg",
-  "group-dining": "/images/service-group-dining.jpg",
+  breakfast: SITE_PHOTOS.foodFishChips,
+  lunch: SITE_PHOTOS.catering,
+  dinner: SITE_PHOTOS.foodDinner,
+  bakery: SITE_PHOTOS.bakery,
+  "bakery-desserts": SITE_PHOTOS.bakeryAlt,
+  "dine-in": SITE_PHOTOS.welcome,
+  takeout: SITE_PHOTOS.foodFishTray,
+  catering: SITE_PHOTOS.catering,
+  "group-dining": SITE_PHOTOS.groupDining,
 };
 
 function getServiceImage(service: ServiceData, index: number): string {

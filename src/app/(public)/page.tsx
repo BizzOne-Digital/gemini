@@ -23,6 +23,8 @@ import {
 } from "@/lib/site-data";
 import { Hero } from "@/components/public/Hero";
 import { resolveImageSrc } from "@/lib/resolve-image";
+import { HOMESTYLE_TAGLINE } from "@/lib/copy";
+import { SITE_PHOTOS, menuPhotoFallback } from "@/lib/site-photos";
 import { QuickInfoStrip } from "@/components/public/QuickInfoStrip";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Button } from "@/components/ui/Button";
@@ -45,12 +47,9 @@ export async function generateMetadata(): Promise<Metadata> {
   });
 }
 
-const FALLBACK_FOOD =
-  "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&q=80";
-const FALLBACK_BAKERY =
-  "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=800&q=80";
-const FALLBACK_DINER =
-  "https://images.unsplash.com/photo-1559339352-11d035aa65de?w=800&q=80";
+const FALLBACK_FOOD = SITE_PHOTOS.foodFishChips;
+const FALLBACK_BAKERY = SITE_PHOTOS.bakery;
+const FALLBACK_DINER = SITE_PHOTOS.welcome;
 
 function getItemPrice(item: MenuItemData) {
   return formatPrice(item.salePrice ?? item.price, item.currency);
@@ -77,19 +76,20 @@ export default async function HomePage() {
     <>
       <Hero
         headline={heroSection?.heading || "Homemade Comfort Food, Served with Heart."}
-        subheadline={
-          heroSection?.description ||
-          "From hearty breakfasts to slow-cooked favourites and freshly baked pies, enjoy the flavours of home in the heart of Waterloo."
-        }
-        image={heroSection?.image || "/images/hero-breakfast.jpg"}
+        subheadline={heroSection?.description || HOMESTYLE_TAGLINE}
+        image={heroSection?.image || SITE_PHOTOS.hero}
         imageAlt={heroSection?.imageAlt}
         primaryCta={{
-          label: heroSection?.ctaLabel || "Explore Our Menu",
+          label: heroSection?.ctaLabel || "See What's Cooking",
           href: heroSection?.ctaHref || "/menu",
         }}
         secondaryCta={{
-          label: heroSection?.ctaSecondaryLabel || "Book a Table",
-          href: heroSection?.ctaSecondaryHref || "/booking",
+          label:
+            heroSection?.ctaSecondaryLabel ||
+            (settings.orderOnlineUrl ? "Order Pickup" : "Book a Table"),
+          href:
+            heroSection?.ctaSecondaryHref ||
+            (settings.orderOnlineUrl ? settings.orderOnlineUrl : "/booking"),
         }}
       />
 
@@ -146,9 +146,9 @@ export default async function HomePage() {
         <div className="container-diner relative">
           <FadeIn className="mb-12">
             <SectionHeading
-              eyebrow="From Our Kitchen"
-              title="Explore the Menu"
-              description="Hearty breakfasts, homestyle mains, fresh salads, and baked goods — all made from scratch with locally sourced ingredients whenever possible."
+              eyebrow="Categories"
+              title="Browse by Craving"
+              description="Breakfast, lunch, dinner, and baked goods — made from scratch with care."
               align="center"
               className="mx-auto"
             />
@@ -156,7 +156,7 @@ export default async function HomePage() {
 
           {categories.length > 0 ? (
             <StaggerChildren className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {categories.slice(0, 6).map((cat) => (
+              {categories.slice(0, 6).map((cat, catIndex) => (
                 <StaggerItem key={cat._id}>
                   <Link href={`/menu?category=${cat.slug}`}>
                     <Card hover padding="none" className="group overflow-hidden">
@@ -164,7 +164,7 @@ export default async function HomePage() {
                         <Image
                           src={resolveImageSrc(
                             cat.image,
-                            "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600&q=80"
+                            menuPhotoFallback(catIndex)
                           )}
                           alt={cat.imageAlt || cat.name}
                           fill
@@ -207,12 +207,6 @@ export default async function HomePage() {
             </FadeIn>
           )}
 
-          <FadeIn className="mt-10 text-center">
-            <Button href="/menu" variant="secondary" size="lg">
-              View Full Menu
-              <ArrowRight className="h-5 w-5" />
-            </Button>
-          </FadeIn>
         </div>
       </section>
 
@@ -611,9 +605,20 @@ export default async function HomePage() {
                   next gathering. We can&apos;t wait to serve you.
                 </p>
                 <div className="mt-8 flex flex-wrap justify-center gap-4">
-                  <Button href="/menu" variant="secondary" size="lg">
-                    View Menu
-                  </Button>
+                  {settings.orderOnlineUrl ? (
+                    <Button
+                      href={settings.orderOnlineUrl}
+                      variant="secondary"
+                      size="lg"
+                      external
+                    >
+                      Order Pickup
+                    </Button>
+                  ) : (
+                    <Button href="/menu" variant="secondary" size="lg">
+                      See Our Food
+                    </Button>
+                  )}
                   <Button
                     href="/booking"
                     variant="outline"

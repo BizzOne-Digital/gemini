@@ -1,11 +1,8 @@
 import { Clock, MapPin, Phone, Utensils } from "lucide-react";
 import { formatPhone } from "@/lib/utils";
 import type { SiteSettingsData } from "@/types/site";
-import {
-  formatHoursSummary,
-  getFullAddress,
-  getPhoneHref,
-} from "@/types/site";
+import { getFullAddress, getPhoneHref } from "@/types/site";
+import { BusinessHoursDisplay } from "@/components/public/BusinessHoursDisplay";
 import { FadeIn } from "@/components/public/animations/FadeIn";
 
 interface QuickInfoStripProps {
@@ -13,12 +10,10 @@ interface QuickInfoStripProps {
 }
 
 export function QuickInfoStrip({ settings }: QuickInfoStripProps) {
-  const hoursSummary = settings.businessHours?.length
-    ? formatHoursSummary(settings.businessHours)
-    : "Mon–Sun 9:00 AM–7:00 PM";
+  const hours = settings.businessHours?.length ? settings.businessHours : [];
 
   const items = [
-    { icon: Clock, label: "Open Daily", value: hoursSummary },
+    { icon: Clock, label: "Today's Hours", hours },
     {
       icon: MapPin,
       label: "Visit Us",
@@ -36,7 +31,7 @@ export function QuickInfoStrip({ settings }: QuickInfoStripProps) {
     {
       icon: Utensils,
       label: "Dine-In & Takeout",
-      value: "Comfort food made from scratch",
+      value: "Breakfast, lunch & dinner made from scratch",
     },
   ];
 
@@ -54,12 +49,18 @@ export function QuickInfoStrip({ settings }: QuickInfoStripProps) {
                       <Icon className="h-5 w-5" />
                     </div>
                     <div className="min-w-0">
-                      <p className="text-xs font-semibold uppercase tracking-wider text-gradient-green">
+                      <p className="text-xs font-bold uppercase tracking-wider text-espresso">
                         {item.label}
                       </p>
-                    <p className="mt-0.5 break-words text-sm font-medium leading-snug text-espresso">
-                      {item.value}
-                    </p>
+                      {"hours" in item && item.hours ? (
+                        <div className="mt-1">
+                          <BusinessHoursDisplay hours={item.hours} variant="today" />
+                        </div>
+                      ) : (
+                        <p className="mt-0.5 break-words text-sm font-semibold leading-snug text-charcoal">
+                          {item.value}
+                        </p>
+                      )}
                     </div>
                   </>
                 );

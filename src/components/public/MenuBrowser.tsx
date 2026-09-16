@@ -5,6 +5,7 @@ import Image from "next/image";
 import { Search, Leaf, Wheat, Flame } from "lucide-react";
 import { cn, formatPrice } from "@/lib/utils";
 import { resolveImageSrc } from "@/lib/resolve-image";
+import { menuPhotoFallback } from "@/lib/site-photos";
 import type { MenuCategoryData, MenuItemData } from "@/types/site";
 import { Card } from "@/components/ui/Card";
 
@@ -14,8 +15,6 @@ const DIETARY_FILTERS = [
   { id: "spicy", label: "Spicy", icon: Flame },
 ];
 
-const FALLBACK_IMAGE =
-  "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600&q=80";
 
 interface MenuBrowserProps {
   categories: MenuCategoryData[];
@@ -150,11 +149,11 @@ export function MenuBrowser({ categories, items }: MenuBrowserProps) {
         </div>
       ) : (
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {filteredItems.map((item) => (
+          {filteredItems.map((item, index) => (
             <Card key={item._id} hover padding="none" className="overflow-hidden">
               <div className="relative aspect-[4/3] bg-soft-oat">
                 <Image
-                  src={resolveImageSrc(item.image, FALLBACK_IMAGE)}
+                  src={resolveImageSrc(item.image, menuPhotoFallback(index))}
                   alt={item.imageAlt || item.name}
                   fill
                   className="object-cover"

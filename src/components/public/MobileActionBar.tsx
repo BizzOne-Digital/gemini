@@ -45,7 +45,7 @@ export function MobileActionBar({ settings }: MobileActionBarProps) {
         >
           <ShoppingBag className="h-5 w-5 text-heritage-green" />
           <span className="text-[0.65rem] font-semibold uppercase tracking-wide">
-            {settings.orderOnlineUrl ? "Order" : "Menu"}
+            {settings.orderOnlineUrl ? "Pickup Order" : "Menu"}
           </span>
         </a>
       </div>

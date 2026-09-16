@@ -8,11 +8,8 @@ import { ContactForm } from "@/components/public/forms/ContactForm";
 import { FadeIn } from "@/components/public/animations/FadeIn";
 import { BreadcrumbStructuredData } from "@/components/seo/StructuredData";
 import { formatPhone } from "@/lib/utils";
-import {
-  formatHoursSummary,
-  getFullAddress,
-  getPhoneHref,
-} from "@/types/site";
+import { getFullAddress, getPhoneHref } from "@/types/site";
+import { BusinessHoursDisplay } from "@/components/public/BusinessHoursDisplay";
 
 export async function generateMetadata(): Promise<Metadata> {
   return buildPageMetadata("/contact", {
@@ -26,9 +23,7 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://homestylediner.ca";
 
 export default async function ContactPage() {
   const settings = await getPublicSiteSettings();
-  const hoursSummary = settings.businessHours?.length
-    ? formatHoursSummary(settings.businessHours)
-    : "Mon–Sun 9:00 AM–7:00 PM";
+  const hours = settings.businessHours?.length ? settings.businessHours : [];
 
   return (
     <>
@@ -118,19 +113,23 @@ export default async function ContactPage() {
                 </a>
               </Card>
 
-              <Card>
-                <div className="flex items-start gap-4">
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-soft-oat text-heritage-green">
-                    <Clock className="h-5 w-5" />
+              <div id="hours">
+                <Card>
+                  <div className="flex items-start gap-4">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-soft-oat text-heritage-green">
+                      <Clock className="h-5 w-5" />
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <p className="text-sm font-medium text-muted-foreground">
+                        Hours by day
+                      </p>
+                      <div className="mt-2">
+                        <BusinessHoursDisplay hours={hours} variant="list" />
+                      </div>
+                    </div>
                   </div>
-                  <div>
-                    <p className="text-sm font-medium text-muted-foreground">
-                      Hours
-                    </p>
-                    <p className="font-semibold text-espresso">{hoursSummary}</p>
-                  </div>
-                </div>
-              </Card>
+                </Card>
+              </div>
 
               {settings.facebookUrl && (
                 <Card>

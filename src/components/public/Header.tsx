@@ -8,7 +8,7 @@ import { Menu, X, Phone, ShoppingCart } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Logo } from "@/components/public/Logo";
 import type { NavigationData, SiteSettingsData } from "@/types/site";
-import { getPhoneHref } from "@/types/site";
+import { getPhoneHref, getTodayHoursLine, getFullAddress } from "@/types/site";
 
 interface HeaderProps {
   navigation: NavigationData;
@@ -46,9 +46,13 @@ export function Header({ navigation, settings }: HeaderProps) {
         <div className="gradient-header-bar text-warm-cream/95">
           <div className="container-diner">
             <p className="flex flex-col items-center gap-0.5 py-2 text-center text-[0.6rem] font-medium uppercase leading-snug tracking-[0.12em] sm:flex-row sm:justify-center sm:gap-0 sm:text-xs sm:tracking-[0.2em]">
-              <span>Open Daily 9AM – 7PM</span>
+              <span>
+                {settings.businessHours?.length
+                  ? getTodayHoursLine(settings.businessHours)
+                  : "Open daily — see hours in footer"}
+              </span>
               <span className="hidden opacity-50 sm:mx-2 sm:inline">•</span>
-              <span className="text-[0.58rem] sm:text-xs">504 Albert St, Waterloo</span>
+              <span className="text-[0.58rem] sm:text-xs">{getFullAddress(settings)}</span>
             </p>
           </div>
         </div>
@@ -111,7 +115,7 @@ export function Header({ navigation, settings }: HeaderProps) {
                   className="inline-flex h-10 items-center gap-2 rounded-full bg-gradient-to-r from-deep-forest via-heritage-green to-fresh-leaf px-5 text-xs font-semibold uppercase tracking-wider text-warm-cream shadow-soft transition-all hover:brightness-110 hover:shadow-elevated glow-green"
                 >
                   <ShoppingCart className="h-3.5 w-3.5" />
-                  Order Online
+                  {orderExternal ? "Order Pickup" : "Order Online"}
                 </Link>
               </div>
 
@@ -188,7 +192,7 @@ export function Header({ navigation, settings }: HeaderProps) {
               className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-heritage-green text-sm font-semibold uppercase tracking-wider text-warm-cream"
             >
               <ShoppingCart className="h-4 w-4" />
-              Order Online
+              {orderExternal ? "Order Pickup" : "Order Online"}
             </Link>
           </div>
         </div>

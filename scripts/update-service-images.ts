@@ -1,21 +1,46 @@
 import "dotenv/config";
 import mongoose from "mongoose";
 import Service from "../src/models/Service";
+import { SITE_PHOTOS } from "../src/lib/site-photos";
 
 const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost:27017/homestyle-diner";
 
 const IMAGE_UPDATES: Record<string, { image: string; imageAlt: string }> = {
   bakery: {
-    image: "/images/service-bakery.png",
-    imageAlt: "Homemade chocolate cake and bakery desserts at Homestyle Diner",
+    image: SITE_PHOTOS.bakery,
+    imageAlt: "Homemade pie and bakery desserts at Homestyle Diner",
+  },
+  "bakery-desserts": {
+    image: SITE_PHOTOS.bakeryAlt,
+    imageAlt: "Decorated cheesecake from Homestyle Diner",
   },
   catering: {
-    image: "/images/service-catering.jpg",
-    imageAlt: "Catering spread with fresh salads and appetizers",
+    image: SITE_PHOTOS.catering,
+    imageAlt: "Catering platters for events and offices",
   },
   "group-dining": {
-    image: "/images/service-group-dining.jpg",
-    imageAlt: "Group dining and catering spread at Homestyle Diner",
+    image: SITE_PHOTOS.groupDining,
+    imageAlt: "Group dining at Homestyle Diner Waterloo",
+  },
+  breakfast: {
+    image: SITE_PHOTOS.foodFishChips,
+    imageAlt: "Classic fish and chips at Homestyle Diner",
+  },
+  lunch: {
+    image: SITE_PHOTOS.catering,
+    imageAlt: "Lunch catering platters",
+  },
+  dinner: {
+    image: SITE_PHOTOS.foodDinner,
+    imageAlt: "Homestyle dinner plate",
+  },
+  "dine-in": {
+    image: SITE_PHOTOS.welcome,
+    imageAlt: "Welcoming dine-in area",
+  },
+  takeout: {
+    image: SITE_PHOTOS.foodFishTray,
+    imageAlt: "Takeout favourites",
   },
 };
 

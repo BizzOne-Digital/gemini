@@ -13,6 +13,7 @@ import {
 } from "@/components/public/animations/StaggerChildren";
 import { BreadcrumbStructuredData } from "@/components/seo/StructuredData";
 import { resolveImageSrc } from "@/lib/resolve-image";
+import { SITE_PHOTOS } from "@/lib/site-photos";
 import { getSection } from "@/types/site";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -87,10 +88,7 @@ export default async function AboutPage() {
             <FadeIn delay={0.2} direction="left">
               <div className="relative aspect-[4/5] overflow-hidden rounded-3xl shadow-elevated">
                 <Image
-                  src={resolveImageSrc(
-                    intro?.image,
-                    "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&q=80"
-                  )}
+                  src={resolveImageSrc(intro?.image, SITE_PHOTOS.about)}
                   alt={
                     intro?.imageAlt ||
                     "Warm and welcoming dining room at Homestyle Diner"

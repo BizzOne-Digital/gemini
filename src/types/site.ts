@@ -21,6 +21,7 @@ export interface SiteSettingsData {
   timezone: string;
   businessHours: BusinessHours[];
   facebookUrl?: string;
+  instagramUrl?: string;
   orderOnlineUrl?: string;
   logos: {
     main?: string;
@@ -159,6 +160,7 @@ export const DEFAULT_SITE_SETTINGS: SiteSettingsData = {
   timezone: "America/Toronto",
   businessHours: DEFAULT_BUSINESS_HOURS,
   facebookUrl: "https://www.facebook.com/Homestyledinerwaterloo/",
+  instagramUrl: "",
   orderOnlineUrl: "",
   logos: {
     main: "/images/logo.png",
@@ -184,12 +186,49 @@ export function getSection(
   return sections?.find((s) => s.key === key && s.isVisible !== false);
 }
 
+const DAY_ORDER = [
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+  "Sunday",
+] as const;
+
+export function getHoursPerDay(hours: BusinessHours[]) {
+  const sorted = [...hours].sort(
+    (a, b) => DAY_ORDER.indexOf(a.day as typeof DAY_ORDER[number]) - DAY_ORDER.indexOf(b.day as typeof DAY_ORDER[number])
+  );
+  return sorted.map((h) => ({
+    day: h.day,
+    line: h.isClosed ? "Closed" : `${h.open} – ${h.close}`,
+  }));
+}
+
+const JS_WEEKDAYS = [
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+] as const;
+
+export function getTodayHoursLine(hours: BusinessHours[]): string {
+  const dayName = JS_WEEKDAYS[new Date().getDay()];
+  const entry = hours.find((h) => h.day === dayName);
+  if (!entry) return "See hours below";
+  if (entry.isClosed) return `${dayName}: Closed today`;
+  return `Today (${dayName}): ${entry.open} – ${entry.close}`;
+}
+
+/** Compact one-line summary for legacy uses */
 export function formatHoursSummary(hours: BusinessHours[]): string {
-  const openDays = hours.filter((h) => !h.isClosed);
-  if (openDays.length === 7 && openDays.every((d) => d.open === openDays[0].open && d.close === openDays[0].close)) {
-    return `Mon–Sun ${openDays[0].open}–${openDays[0].close}`;
-  }
-  return openDays.map((h) => `${h.day.slice(0, 3)} ${h.open}–${h.close}`).join(" · ");
+  return getHoursPerDay(hours)
+    .map(({ day, line }) => `${day.slice(0, 3)} ${line}`)
+    .join(" · ");
 }
 
 export function getPhoneHref(phone: string): string {

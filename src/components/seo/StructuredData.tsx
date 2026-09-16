@@ -1,4 +1,5 @@
 import type { SiteSettingsData } from "@/types/site";
+import { SITE_PHOTOS } from "@/lib/site-photos";
 
 interface StructuredDataProps {
   settings: SiteSettingsData;
@@ -45,7 +46,7 @@ export function StructuredData({ settings }: StructuredDataProps) {
     email: settings.primaryEmail,
     image:
       settings.logos?.main ||
-      "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1200&q=80",
+      `${process.env.NEXT_PUBLIC_SITE_URL || "https://homestylediner.ca"}${SITE_PHOTOS.hero}`,
     address: {
       "@type": "PostalAddress",
       streetAddress: settings.address,

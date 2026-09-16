@@ -69,7 +69,12 @@ export default function SettingsPage() {
         <h2 className="mb-4 text-lg font-semibold">Social & Links</h2>
         <div className="grid gap-4 sm:grid-cols-2">
           <div><label className="mb-1 block text-sm font-medium">Facebook URL</label><input {...register("facebookUrl")} className="w-full rounded-lg border border-border px-3 py-2 text-sm" /></div>
-          <div><label className="mb-1 block text-sm font-medium">Order Online URL</label><input {...register("orderOnlineUrl")} className="w-full rounded-lg border border-border px-3 py-2 text-sm" /></div>
+          <div><label className="mb-1 block text-sm font-medium">Instagram URL</label><input {...register("instagramUrl")} placeholder="https://www.instagram.com/..." className="w-full rounded-lg border border-border px-3 py-2 text-sm" /></div>
+          <div className="sm:col-span-2">
+            <label className="mb-1 block text-sm font-medium">Online pickup orders (Moneris link)</label>
+            <input {...register("orderOnlineUrl")} placeholder="https://..." className="w-full rounded-lg border border-border px-3 py-2 text-sm" />
+            <p className="mt-1 text-xs text-muted-foreground">Opens in a new tab from header and mobile bar as &quot;Order Pickup&quot;.</p>
+          </div>
         </div>
       </section>
 

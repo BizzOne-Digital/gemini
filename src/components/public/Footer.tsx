@@ -7,15 +7,32 @@ import {
   Share2,
   ExternalLink,
 } from "lucide-react";
+
+function InstagramIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden
+    >
+      <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+      <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+    </svg>
+  );
+}
 import { formatPhone } from "@/lib/utils";
 import { Button } from "@/components/ui/Button";
 import { Logo } from "@/components/public/Logo";
 import type { NavigationData, SiteSettingsData } from "@/types/site";
-import {
-  formatHoursSummary,
-  getFullAddress,
-  getPhoneHref,
-} from "@/types/site";
+import { getFullAddress, getPhoneHref } from "@/types/site";
+import { FOOTER_COPYRIGHT } from "@/lib/copy";
+import { BusinessHoursDisplay } from "@/components/public/BusinessHoursDisplay";
 
 interface FooterProps {
   navigation: NavigationData;
@@ -30,9 +47,6 @@ export function Footer({ navigation, settings }: FooterProps) {
   const hours = settings.businessHours?.length
     ? settings.businessHours
     : [];
-  const hoursSummary = hours.length
-    ? formatHoursSummary(hours)
-    : "Mon–Sun 9:00 AM–7:00 PM";
 
   return (
     <footer className="section-safe relative overflow-hidden gradient-green-mesh text-warm-cream">
@@ -79,18 +93,32 @@ export function Footer({ navigation, settings }: FooterProps) {
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-warm-cream/75">
               {settings.footerDescription}
             </p>
-            {settings.facebookUrl && (
-              <a
-                href={settings.facebookUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-butter-gold transition-colors hover:text-warm-cream"
-              >
-                <Share2 className="h-4 w-4" />
-                Follow us on Facebook
-                <ExternalLink className="h-3 w-3 opacity-60" />
-              </a>
-            )}
+            <div className="mt-6 flex flex-col gap-2">
+              {settings.facebookUrl && (
+                <a
+                  href={settings.facebookUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-sm font-medium text-butter-gold transition-colors hover:text-warm-cream"
+                >
+                  <Share2 className="h-4 w-4" />
+                  Facebook
+                  <ExternalLink className="h-3 w-3 opacity-60" />
+                </a>
+              )}
+              {settings.instagramUrl && (
+                <a
+                  href={settings.instagramUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-sm font-medium text-butter-gold transition-colors hover:text-warm-cream"
+                >
+                  <InstagramIcon className="h-4 w-4" />
+                  Instagram
+                  <ExternalLink className="h-3 w-3 opacity-60" />
+                </a>
+              )}
+            </div>
           </div>
 
           <div className="lg:col-span-2">
@@ -165,8 +193,8 @@ export function Footer({ navigation, settings }: FooterProps) {
             </h3>
             <div className="mt-4 flex items-start gap-3">
               <Clock className="mt-0.5 h-4 w-4 shrink-0 text-fresh-leaf" />
-              <div>
-                <p className="text-sm text-warm-cream/75">{hoursSummary}</p>
+              <div className="min-w-0 flex-1">
+                <BusinessHoursDisplay hours={hours} variant="list" light />
                 {settings.parkingNotes && (
                   <p className="mt-3 text-xs text-warm-cream/55">
                     {settings.parkingNotes}
@@ -192,8 +220,7 @@ export function Footer({ navigation, settings }: FooterProps) {
 
         <div className="mt-14 flex flex-col gap-4 border-t border-warm-cream/10 pt-8 sm:flex-row sm:items-center sm:justify-between">
           <p className="break-words text-xs leading-relaxed text-warm-cream/50">
-            © {new Date().getFullYear()} {settings.legalBusinessName}. All
-            rights reserved.
+            © {FOOTER_COPYRIGHT}
           </p>
           <div className="flex gap-4 text-xs">
             <Link

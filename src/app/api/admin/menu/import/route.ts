@@ -6,6 +6,13 @@ import MenuCategory from "@/models/MenuCategory";
 import MenuItem from "@/models/MenuItem";
 import ImportJob from "@/models/ImportJob";
 import { slugify, normalizeItemName } from "@/lib/utils";
+import {
+  pickImportField,
+  SQUARE_CATEGORY_KEYS,
+  SQUARE_DESCRIPTION_KEYS,
+  SQUARE_ITEM_NAME_KEYS,
+  SQUARE_PRICE_KEYS,
+} from "@/lib/menu-import";
 import { logAudit } from "@/lib/audit";
 
 interface ImportRow {
@@ -74,12 +81,13 @@ export async function POST(req: NextRequest) {
     const errors: { row: number; field: string; message: string }[] = [];
 
     for (let i = 0; i < rows.length; i++) {
-      const row = rows[i];
+      const row = rows[i] as Record<string, unknown>;
       const rowNum = i + 2;
 
       try {
-        const itemName = row["Item Name"];
-        const categoryName = row.Category;
+        const itemName = pickImportField(row, SQUARE_ITEM_NAME_KEYS);
+        const categoryName = pickImportField(row, SQUARE_CATEGORY_KEYS);
+        const priceRaw = pickImportField(row, SQUARE_PRICE_KEYS);
 
         if (!itemName || !categoryName) {
           errors.push({ row: rowNum, field: "Item Name/Category", message: "Required fields missing" });
@@ -87,7 +95,7 @@ export async function POST(req: NextRequest) {
           continue;
         }
 
-        const price = parseFloat(String(row.Price || "0"));
+        const price = parseFloat(String(priceRaw || "0"));
         if (isNaN(price) || price < 0) {
           errors.push({ row: rowNum, field: "Price", message: "Invalid price" });
           skipped++;
@@ -112,23 +120,34 @@ export async function POST(req: NextRequest) {
           });
         }
 
-        const slug = row.Slug || slugify(itemName);
+        const slug =
+          (typeof row.Slug === "string" && row.Slug) || slugify(itemName);
         const normalizedName = normalizeItemName(itemName);
+        const description =
+          pickImportField(row, SQUARE_DESCRIPTION_KEYS) ||
+          (typeof row.Description === "string" ? row.Description : undefined);
 
         const itemData = {
           name: itemName,
           slug,
           normalizedName,
-          sku: row.SKU,
-          description: row.Description,
+          sku: typeof row.SKU === "string" ? row.SKU : undefined,
+          description,
           price,
           salePrice: row["Sale Price"] ? parseFloat(String(row["Sale Price"])) : undefined,
-          currency: row.Currency || "CAD",
+          currency: typeof row.Currency === "string" ? row.Currency : "CAD",
           category: category._id,
-          subcategory: row.Subcategory,
-          image: row["Image URL"],
-          dietaryTags: row["Dietary Tags"]?.split(",").map((t) => t.trim()).filter(Boolean) || [],
-          allergens: row.Allergens?.split(",").map((t) => t.trim()).filter(Boolean) || [],
+          subcategory:
+            typeof row.Subcategory === "string" ? row.Subcategory : undefined,
+          image: typeof row["Image URL"] === "string" ? row["Image URL"] : undefined,
+          dietaryTags:
+            typeof row["Dietary Tags"] === "string"
+              ? row["Dietary Tags"].split(",").map((t: string) => t.trim()).filter(Boolean)
+              : [],
+          allergens:
+            typeof row.Allergens === "string"
+              ? row.Allergens.split(",").map((t: string) => t.trim()).filter(Boolean)
+              : [],
           isAvailable: row.Available !== undefined ? parseBool(row.Available) : true,
           isFeatured: parseBool(row.Featured),
           isPopular: parseBool(row.Popular),

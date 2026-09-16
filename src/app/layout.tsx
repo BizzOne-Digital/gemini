@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     template: "%s | Homestyle Diner",
   },
   description:
-    "Family-owned diner in Waterloo since 1987. Hearty breakfasts, slow-cooked favourites, and freshly baked pies. Dine-in, takeout, catering, and group dining.",
+    "Family-owned diner in Waterloo since 1987. Hearty breakfasts, lunches, and dinners, slow-cooked favourites, and freshly baked pies. Dine-in, takeout, catering, and group dining.",
   icons: {
     icon: "/favicon.png",
     shortcut: "/favicon.png",

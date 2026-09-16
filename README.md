@@ -110,6 +110,7 @@ No files are written to `public/` — safe for Vercel and redeploys.
 | `npm run lint` | ESLint |
 | `npm run seed` | Seed MongoDB |
 | `npm run reset-admin` | Reset/unlock admin account |
+| `npm run import-catalog` | Import 145-item Square menu from `data/homestyle-menu.json` |
 
 ## Project Structure
 

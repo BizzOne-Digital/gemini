@@ -8,8 +8,11 @@
     "start": "next start",
     "lint": "eslint",
     "seed": "tsx scripts/seed.ts",
+    "seed:all": "tsx scripts/seed.ts && tsx scripts/import-homestyle-catalog.ts && tsx scripts/apply-site-photos.ts && tsx scripts/reset-admin.ts",
     "update-service-images": "tsx scripts/update-service-images.ts",
-    "reset-admin": "tsx scripts/reset-admin.ts"
+    "reset-admin": "tsx scripts/reset-admin.ts",
+    "apply-site-photos": "tsx scripts/apply-site-photos.ts",
+    "import-catalog": "tsx scripts/import-homestyle-catalog.ts"
   },
   "engines": {
     "node": ">=20"

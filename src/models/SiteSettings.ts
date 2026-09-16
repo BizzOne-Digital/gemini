@@ -23,6 +23,7 @@ export interface ISiteSettings extends Document {
   timezone: string;
   businessHours: IBusinessHours[];
   facebookUrl: string;
+  instagramUrl: string;
   orderOnlineUrl: string;
   logos: {
     main?: string;
@@ -84,6 +85,7 @@ const SiteSettingsSchema = new Schema<ISiteSettings>(
       type: String,
       default: "https://www.facebook.com/Homestyledinerwaterloo/",
     },
+    instagramUrl: String,
     orderOnlineUrl: String,
     logos: {
       main: String,

@@ -25,6 +25,7 @@ import { Hero } from "@/components/public/Hero";
 import { resolveImageSrc } from "@/lib/resolve-image";
 import { HOMESTYLE_TAGLINE } from "@/lib/copy";
 import { SITE_PHOTOS } from "@/lib/site-photos";
+import { resolveHomeMenuCategories } from "@/lib/home-menu-categories";
 import { QuickInfoStrip } from "@/components/public/QuickInfoStrip";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Button } from "@/components/ui/Button";
@@ -60,11 +61,13 @@ export default async function HomePage() {
   const [pageContent, categories, featuredItems, services, testimonials] =
     await Promise.all([
       getPageContent("home").catch(() => null),
-      getMenuCategories(true).catch((): MenuCategoryData[] => []),
+      getMenuCategories().catch((): MenuCategoryData[] => []),
       getMenuItems({ featured: true }).catch((): MenuItemData[] => []),
       getServices(true).catch((): ServiceData[] => []),
       getTestimonials(true, true).catch((): TestimonialData[] => []),
     ]);
+
+  const homeCategories = resolveHomeMenuCategories(categories);
 
   const heroSection = getSection(pageContent?.sections, "hero");
   const welcomeSection = getSection(pageContent?.sections, "welcome");
@@ -153,22 +156,33 @@ export default async function HomePage() {
             />
           </FadeIn>
 
-          {categories.length > 0 ? (
+          {homeCategories.length > 0 ? (
             <StaggerChildren className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {categories.slice(0, 6).map((cat) => (
-                <StaggerItem key={cat._id}>
-                  <Link href={`/menu?category=${cat.slug}`}>
-                    <Card hover padding="md" className="group h-full">
-                      <div className="mb-4 h-1 w-12 rounded-full bg-gradient-to-r from-fresh-leaf to-butter-gold transition-all group-hover:w-16" />
-                      <CardTitle>{cat.name}</CardTitle>
-                      {cat.description && (
-                        <CardDescription>{cat.description}</CardDescription>
-                      )}
-                      {cat.startingPrice != null && (
-                        <p className="mt-3 text-sm font-semibold text-heritage-green">
-                          From {formatPrice(cat.startingPrice)}
-                        </p>
-                      )}
+              {homeCategories.map((cat) => (
+                <StaggerItem key={cat.slug}>
+                  <Link href={`/menu?category=${cat.menuSlug}`}>
+                    <Card hover padding="none" className="group h-full overflow-hidden">
+                      <div className="relative aspect-[16/10] bg-soft-oat">
+                        <Image
+                          src={cat.image}
+                          alt={cat.imageAlt}
+                          fill
+                          className="object-cover transition-transform duration-500 group-hover:scale-105"
+                          sizes="(max-width: 768px) 100vw, 33vw"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-deep-forest/50 via-transparent to-butter-gold/10 opacity-60 transition-opacity group-hover:opacity-80" />
+                      </div>
+                      <div className="p-5">
+                        <CardTitle>{cat.name}</CardTitle>
+                        {cat.description && (
+                          <CardDescription>{cat.description}</CardDescription>
+                        )}
+                        {cat.startingPrice != null && (
+                          <p className="mt-3 text-sm font-semibold text-heritage-green">
+                            From {formatPrice(cat.startingPrice)}
+                          </p>
+                        )}
+                      </div>
                     </Card>
                   </Link>
                 </StaggerItem>

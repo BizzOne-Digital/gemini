@@ -1,6 +1,7 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
+import { useDeferredEffect } from "@/hooks/useDeferredEffect";
 import { Plus, Search, Trash2, Star, Eye, EyeOff } from "lucide-react";
 import { toast } from "sonner";
 import { DataTable, type Column } from "@/components/admin/DataTable";
@@ -49,8 +50,8 @@ export default function MenuItemsPage() {
     setLoading(false);
   }, [page, search, categoryFilter]);
 
-  useEffect(() => {
-    fetchItems();
+  useDeferredEffect(() => {
+    void fetchItems();
     fetch("/api/admin/menu/categories").then((r) => r.json()).then(setCategories);
   }, [fetchItems]);
 

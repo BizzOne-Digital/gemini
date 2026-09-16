@@ -39,7 +39,7 @@ async function main() {
 
   await upsertSection("home", "hero", {
     image: SITE_PHOTOS.hero,
-    imageAlt: "Fish and chips with fries and coleslaw at Homestyle Diner",
+    imageAlt: "Hearty homestyle breakfast with pancakes, eggs, bacon, and coffee at Homestyle Diner",
   });
   await upsertSection("home", "welcome", {
     image: SITE_PHOTOS.welcome,

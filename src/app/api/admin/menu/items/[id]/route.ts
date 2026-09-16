@@ -3,7 +3,7 @@ import { connectDB } from "@/lib/db";
 import MenuItem from "@/models/MenuItem";
 import { normalizeItemName, slugify } from "@/lib/utils";
 import { logAudit } from "@/lib/audit";
-import { getSession, unauthorized, notFound, badRequest, serverError } from "@/lib/api-helpers";
+import { getSession, unauthorized, notFound, serverError } from "@/lib/api-helpers";
 
 type RouteParams = { params: Promise<{ id: string }> };
 

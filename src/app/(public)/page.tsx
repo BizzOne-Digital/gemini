@@ -24,7 +24,7 @@ import {
 import { Hero } from "@/components/public/Hero";
 import { resolveImageSrc } from "@/lib/resolve-image";
 import { HOMESTYLE_TAGLINE } from "@/lib/copy";
-import { SITE_PHOTOS, menuPhotoFallback } from "@/lib/site-photos";
+import { SITE_PHOTOS } from "@/lib/site-photos";
 import { QuickInfoStrip } from "@/components/public/QuickInfoStrip";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Button } from "@/components/ui/Button";
@@ -47,7 +47,6 @@ export async function generateMetadata(): Promise<Metadata> {
   });
 }
 
-const FALLBACK_FOOD = SITE_PHOTOS.foodFishChips;
 const FALLBACK_BAKERY = SITE_PHOTOS.bakery;
 const FALLBACK_DINER = SITE_PHOTOS.welcome;
 
@@ -156,34 +155,20 @@ export default async function HomePage() {
 
           {categories.length > 0 ? (
             <StaggerChildren className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {categories.slice(0, 6).map((cat, catIndex) => (
+              {categories.slice(0, 6).map((cat) => (
                 <StaggerItem key={cat._id}>
                   <Link href={`/menu?category=${cat.slug}`}>
-                    <Card hover padding="none" className="group overflow-hidden">
-                      <div className="relative aspect-[16/10] bg-soft-oat">
-                        <Image
-                          src={resolveImageSrc(
-                            cat.image,
-                            menuPhotoFallback(catIndex)
-                          )}
-                          alt={cat.imageAlt || cat.name}
-                          fill
-                          className="object-cover transition-transform duration-500 group-hover:scale-105"
-                          sizes="(max-width: 768px) 100vw, 33vw"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-deep-forest/50 via-transparent to-butter-gold/10 opacity-60 transition-opacity group-hover:opacity-80" />
-                      </div>
-                      <div className="p-5">
-                        <CardTitle>{cat.name}</CardTitle>
-                        {cat.description && (
-                          <CardDescription>{cat.description}</CardDescription>
-                        )}
-                        {cat.startingPrice != null && (
-                          <p className="mt-3 text-sm font-semibold text-heritage-green">
-                            From {formatPrice(cat.startingPrice)}
-                          </p>
-                        )}
-                      </div>
+                    <Card hover padding="md" className="group h-full">
+                      <div className="mb-4 h-1 w-12 rounded-full bg-gradient-to-r from-fresh-leaf to-butter-gold transition-all group-hover:w-16" />
+                      <CardTitle>{cat.name}</CardTitle>
+                      {cat.description && (
+                        <CardDescription>{cat.description}</CardDescription>
+                      )}
+                      {cat.startingPrice != null && (
+                        <p className="mt-3 text-sm font-semibold text-heritage-green">
+                          From {formatPrice(cat.startingPrice)}
+                        </p>
+                      )}
                     </Card>
                   </Link>
                 </StaggerItem>
@@ -229,29 +214,18 @@ export default async function HomePage() {
             <StaggerChildren className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
               {featuredItems.slice(0, 6).map((item: MenuItemData) => (
                 <StaggerItem key={item._id}>
-                  <Card hover padding="none" className="overflow-hidden">
-                    <div className="relative aspect-[4/3]">
-                      <Image
-                        src={resolveImageSrc(item.image, FALLBACK_FOOD)}
-                        alt={item.imageAlt || item.name}
-                        fill
-                        className="object-cover"
-                        sizes="(max-width: 768px) 100vw, 33vw"
-                      />
+                  <Card hover padding="md" className="h-full">
+                    <div className="flex items-start justify-between gap-2">
+                      <CardTitle>{item.name}</CardTitle>
+                      <span className="shrink-0 font-semibold text-heritage-green">
+                        {getItemPrice(item)}
+                      </span>
                     </div>
-                    <div className="p-5">
-                      <div className="flex items-start justify-between gap-2">
-                        <CardTitle>{item.name}</CardTitle>
-                        <span className="shrink-0 font-semibold text-heritage-green">
-                          {getItemPrice(item)}
-                        </span>
-                      </div>
-                      {item.description && (
-                        <CardDescription className="line-clamp-2">
-                          {item.description}
-                        </CardDescription>
-                      )}
-                    </div>
+                    {item.description && (
+                      <CardDescription className="line-clamp-2">
+                        {item.description}
+                      </CardDescription>
+                    )}
                   </Card>
                 </StaggerItem>
               ))}

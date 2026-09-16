@@ -1,6 +1,7 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
+import { useDeferredEffect } from "@/hooks/useDeferredEffect";
 import { Check, X, Star, Trash2 } from "lucide-react";
 import { toast } from "sonner";
 import { DataTable, type Column } from "@/components/admin/DataTable";
@@ -36,7 +37,7 @@ export default function TestimonialsPage() {
     setLoading(false);
   }, [page, statusFilter]);
 
-  useEffect(() => { fetchTestimonials(); }, [fetchTestimonials]);
+  useDeferredEffect(() => { void fetchTestimonials(); }, [fetchTestimonials]);
 
   const updateStatus = async (id: string, status: string) => {
     const res = await fetch(`/api/admin/testimonials/${id}`, {

@@ -78,9 +78,9 @@ export default async function AboutPage() {
                   Waterloo neighbours.
                 </p>
                 <p>
-                  We believe great food doesn't need to be complicated. Our
+                  We believe great food doesn&apos;t need to be complicated. Our
                   kitchen team arrives early each morning to prepare soups,
-                  sauces, and baked goods by hand. When you dine with us, you're
+                  sauces, and baked goods by hand. When you dine with us, you&apos;re
                   tasting decades of care in every bite.
                 </p>
               </div>

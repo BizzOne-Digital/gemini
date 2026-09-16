@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { useDeferredEffect } from "@/hooks/useDeferredEffect";
 import { Plus, Pencil, Trash2 } from "lucide-react";
 import { toast } from "sonner";
 import { DataTable, type Column } from "@/components/admin/DataTable";
@@ -31,7 +32,7 @@ export default function CategoriesPage() {
       .finally(() => setLoading(false));
   };
 
-  useEffect(() => { fetchCategories(); }, []);
+  useDeferredEffect(() => { fetchCategories(); }, []);
 
   const handleSave = async () => {
     const url = editing ? `/api/admin/menu/categories/${editing._id}` : "/api/admin/menu/categories";

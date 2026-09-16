@@ -37,7 +37,7 @@ export async function POST(req: NextRequest) {
     const referenceNumber = generateReference("BK");
 
     await connectDB();
-    const booking = await BookingRequest.create({
+    await BookingRequest.create({
       ...parsed.data,
       preferredDate: new Date(parsed.data.preferredDate),
       referenceNumber,

@@ -57,7 +57,7 @@ export async function POST(req: NextRequest) {
       performedByEmail: session.user.email,
     });
 
-    const { password: _, ...userWithoutPassword } = user.toObject();
+    const { password: _password, ...userWithoutPassword } = user.toObject();
     return NextResponse.json(userWithoutPassword, { status: 201 });
   } catch {
     return serverError("Failed to create user");

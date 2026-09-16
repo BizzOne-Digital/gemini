@@ -3,7 +3,7 @@ import { connectDB } from "@/lib/db";
 import Testimonial from "@/models/Testimonial";
 import { testimonialSchema } from "@/lib/validations/forms";
 import { rateLimit } from "@/lib/rate-limit";
-import { sendEmail, testimonialConfirmationEmail } from "@/lib/email";
+import { sendEmail } from "@/lib/email";
 
 export async function POST(req: NextRequest) {
   try {

@@ -8,8 +8,8 @@ export function photoUrl(filename: string): string {
 }
 
 export const SITE_PHOTOS = {
-  /** Hero — fish & chips platter */
-  hero: photoUrl("WhatsApp Image 2026-09-11 at 12.10.31 PM.jpeg"),
+  /** Hero — breakfast spread (public/images/hero-breakfast.jpg) */
+  hero: "/images/hero-breakfast.jpg",
   /** Welcome / dine-in interior with chalkboard */
   welcome: photoUrl("1 (4).JPEG"),
   /** Bakery — chocolate-topped cream pie */

@@ -12,6 +12,7 @@
     "update-service-images": "tsx scripts/update-service-images.ts",
     "reset-admin": "tsx scripts/reset-admin.ts",
     "apply-site-photos": "tsx scripts/apply-site-photos.ts",
+    "add-gallery-nav": "tsx scripts/add-gallery-nav.ts",
     "import-catalog": "tsx scripts/import-homestyle-catalog.ts"
   },
   "engines": {

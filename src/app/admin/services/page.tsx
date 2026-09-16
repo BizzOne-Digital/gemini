@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { useDeferredEffect } from "@/hooks/useDeferredEffect";
 import { Plus, Pencil, Trash2 } from "lucide-react";
 import { toast } from "sonner";
 import { DataTable, type Column } from "@/components/admin/DataTable";
@@ -32,7 +33,7 @@ export default function ServicesPage() {
     fetch("/api/admin/services").then((r) => r.json()).then(setServices).finally(() => setLoading(false));
   };
 
-  useEffect(() => { fetchServices(); }, []);
+  useDeferredEffect(() => { fetchServices(); }, []);
 
   const handleSave = async () => {
     const url = editing ? `/api/admin/services/${editing._id}` : "/api/admin/services";

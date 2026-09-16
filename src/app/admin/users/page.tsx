@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { useDeferredEffect } from "@/hooks/useDeferredEffect";
 import { useSession } from "next-auth/react";
 import { Plus, Pencil, Trash2 } from "lucide-react";
 import { toast } from "sonner";
@@ -37,7 +38,7 @@ export default function UsersPage() {
       .finally(() => setLoading(false));
   };
 
-  useEffect(() => { fetchUsers(); }, []);
+  useDeferredEffect(() => { fetchUsers(); }, []);
 
   const handleSave = async () => {
     const url = editing ? `/api/admin/users/${editing._id}` : "/api/admin/users";

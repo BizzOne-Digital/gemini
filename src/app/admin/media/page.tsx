@@ -1,6 +1,7 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
+import { useDeferredEffect } from "@/hooks/useDeferredEffect";
 import Image from "next/image";
 import { Trash2, Search } from "lucide-react";
 import { toast } from "sonner";
@@ -44,7 +45,7 @@ export default function MediaPage() {
     setLoading(false);
   }, [page, folder, search]);
 
-  useEffect(() => { fetchMedia(); }, [fetchMedia]);
+  useDeferredEffect(() => { void fetchMedia(); }, [fetchMedia]);
 
   const handleDelete = async () => {
     if (!deleteId) return;

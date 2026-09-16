@@ -1,6 +1,7 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
+import { useDeferredEffect } from "@/hooks/useDeferredEffect";
 import { toast } from "sonner";
 import { DataTable, type Column } from "@/components/admin/DataTable";
 import { format } from "date-fns";
@@ -39,7 +40,7 @@ export default function BookingsPage() {
     setLoading(false);
   }, [page, statusFilter]);
 
-  useEffect(() => { fetchBookings(); }, [fetchBookings]);
+  useDeferredEffect(() => { void fetchBookings(); }, [fetchBookings]);
 
   const updateStatus = async (id: string, status: string, note?: string) => {
     const res = await fetch(`/api/admin/bookings/${id}`, {

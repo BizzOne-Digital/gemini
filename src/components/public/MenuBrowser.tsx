@@ -1,11 +1,8 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import Image from "next/image";
 import { Search, Leaf, Wheat, Flame } from "lucide-react";
 import { cn, formatPrice } from "@/lib/utils";
-import { resolveImageSrc } from "@/lib/resolve-image";
-import { menuPhotoFallback } from "@/lib/site-photos";
 import type { MenuCategoryData, MenuItemData } from "@/types/site";
 import { Card } from "@/components/ui/Card";
 
@@ -149,33 +146,26 @@ export function MenuBrowser({ categories, items }: MenuBrowserProps) {
         </div>
       ) : (
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {filteredItems.map((item, index) => (
-            <Card key={item._id} hover padding="none" className="overflow-hidden">
-              <div className="relative aspect-[4/3] bg-soft-oat">
-                <Image
-                  src={resolveImageSrc(item.image, menuPhotoFallback(index))}
-                  alt={item.imageAlt || item.name}
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 768px) 100vw, 33vw"
-                />
-                {item.isPopular && (
-                  <span className="absolute left-3 top-3 rounded-full bg-butter-gold px-2.5 py-1 text-xs font-semibold text-espresso">
-                    Popular
-                  </span>
-                )}
-                {!item.isAvailable && (
-                  <span className="absolute inset-0 flex items-center justify-center bg-charcoal/50 text-sm font-semibold text-warm-cream">
-                    Unavailable
-                  </span>
-                )}
-              </div>
-              <div className="p-5">
-                <div className="flex items-start justify-between gap-3">
+          {filteredItems.map((item) => (
+            <Card key={item._id} hover padding="md" className="relative h-full">
+              <div className="absolute inset-x-0 top-0 h-1 rounded-t-2xl bg-gradient-to-r from-fresh-leaf via-butter-gold to-warm-terracotta" aria-hidden />
+              <div className="flex items-start justify-between gap-3">
                   <div>
-                    <h3 className="font-display text-lg text-espresso">
-                      {item.name}
-                    </h3>
+                    <div className="flex flex-wrap items-center gap-2">
+                      <h3 className="font-display text-lg text-espresso">
+                        {item.name}
+                      </h3>
+                      {item.isPopular && (
+                        <span className="rounded-full bg-butter-gold/90 px-2 py-0.5 text-[0.65rem] font-semibold uppercase tracking-wide text-espresso">
+                          Popular
+                        </span>
+                      )}
+                      {!item.isAvailable && (
+                        <span className="rounded-full bg-charcoal/10 px-2 py-0.5 text-[0.65rem] font-semibold uppercase tracking-wide text-muted-foreground">
+                          Unavailable
+                        </span>
+                      )}
+                    </div>
                     {getCategoryName(item) && (
                       <p className="text-xs text-fresh-leaf">
                         {getCategoryName(item)}
@@ -203,7 +193,6 @@ export function MenuBrowser({ categories, items }: MenuBrowserProps) {
                     ))}
                   </div>
                 )}
-              </div>
             </Card>
           ))}
         </div>

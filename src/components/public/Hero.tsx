@@ -44,12 +44,12 @@ export function Hero({
           alt=""
           fill
           priority
-          className="object-cover object-[65%_center] sm:object-[70%_center] lg:object-right"
+          className="object-cover object-left sm:object-[30%_center] lg:object-center"
           sizes="100vw"
           aria-hidden
         />
         <div
-          className="absolute inset-0 bg-gradient-to-r from-warm-cream via-warm-cream/95 to-warm-cream/10 sm:from-warm-cream sm:via-warm-cream/88 sm:to-transparent lg:via-warm-cream/70 lg:to-transparent"
+          className="absolute inset-0 bg-gradient-to-r from-warm-cream/90 via-warm-cream/60 to-transparent sm:from-warm-cream/75 sm:via-warm-cream/40 sm:to-transparent lg:via-warm-cream/25"
           aria-hidden
         />
         <div

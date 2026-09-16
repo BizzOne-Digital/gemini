@@ -1,6 +1,7 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
+import { useDeferredEffect } from "@/hooks/useDeferredEffect";
 import { toast } from "sonner";
 import { DataTable, type Column } from "@/components/admin/DataTable";
 import { format } from "date-fns";
@@ -37,7 +38,7 @@ export default function InquiriesPage() {
     setLoading(false);
   }, [page, statusFilter]);
 
-  useEffect(() => { fetchInquiries(); }, [fetchInquiries]);
+  useDeferredEffect(() => { void fetchInquiries(); }, [fetchInquiries]);
 
   const updateStatus = async (id: string, status: string) => {
     const res = await fetch(`/api/admin/inquiries/${id}`, {

@@ -16,8 +16,9 @@ interface HeaderProps {
 }
 
 export function Header({ navigation, settings }: HeaderProps) {
-  const [mobileOpen, setMobileOpen] = useState(false);
   const pathname = usePathname();
+  const [mobileMenuPath, setMobileMenuPath] = useState<string | null>(null);
+  const mobileOpen = mobileMenuPath === pathname;
   const isHome = pathname === "/";
   const prefersReducedMotion = useReducedMotion();
 
@@ -31,10 +32,6 @@ export function Header({ navigation, settings }: HeaderProps) {
       document.body.style.overflow = "";
     };
   }, [mobileOpen]);
-
-  useEffect(() => {
-    setMobileOpen(false);
-  }, [pathname]);
 
   const orderHref = settings.orderOnlineUrl || "/menu";
   const orderExternal = !!settings.orderOnlineUrl;
@@ -122,7 +119,7 @@ export function Header({ navigation, settings }: HeaderProps) {
               <button
                 type="button"
                 className="inline-flex h-10 w-10 items-center justify-center rounded-full text-espresso transition-colors hover:bg-soft-oat xl:hidden"
-                onClick={() => setMobileOpen((o) => !o)}
+                onClick={() => setMobileMenuPath((p) => (p === pathname ? null : pathname))}
                 aria-expanded={mobileOpen}
                 aria-label={mobileOpen ? "Close menu" : "Open menu"}
               >
@@ -141,7 +138,7 @@ export function Header({ navigation, settings }: HeaderProps) {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: prefersReducedMotion ? 0 : 0.25 }}
-            onClick={() => setMobileOpen(false)}
+            onClick={() => setMobileMenuPath(null)}
             aria-hidden
           />
         )}
@@ -171,7 +168,7 @@ export function Header({ navigation, settings }: HeaderProps) {
                 key={link.href}
                 href={link.href}
                 className="rounded-lg px-4 py-3.5 text-sm font-semibold uppercase tracking-wider text-espresso transition-colors hover:bg-soft-oat"
-                onClick={() => setMobileOpen(false)}
+                onClick={() => setMobileMenuPath(null)}
               >
                 {link.label}
               </Link>

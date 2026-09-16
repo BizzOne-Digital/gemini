@@ -1,6 +1,7 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
+import { useDeferredEffect } from "@/hooks/useDeferredEffect";
 import { DataTable, type Column } from "@/components/admin/DataTable";
 import { format } from "date-fns";
 
@@ -31,7 +32,7 @@ export default function AuditLogsPage() {
     setLoading(false);
   }, [page, entityFilter]);
 
-  useEffect(() => { fetchLogs(); }, [fetchLogs]);
+  useDeferredEffect(() => { void fetchLogs(); }, [fetchLogs]);
 
   const columns: Column<AuditLog>[] = [
     { key: "action", header: "Action", render: (row) => <span className="font-medium capitalize">{row.action}</span> },

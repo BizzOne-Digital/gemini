@@ -107,7 +107,26 @@ export function Hero({
 
           <FadeIn delay={0.65} className="mt-10">
             <p className="text-xs font-bold uppercase tracking-[0.25em] text-espresso/90">
-              Dine-In • Takeout • Catering
+              <Link
+                href="/services#dine-in"
+                className="transition-colors hover:text-heritage-green"
+              >
+                Dine-In
+              </Link>
+              <span className="mx-2 text-espresso/50">•</span>
+              <Link
+                href="/services#takeout"
+                className="transition-colors hover:text-heritage-green"
+              >
+                Takeout
+              </Link>
+              <span className="mx-2 text-espresso/50">•</span>
+              <Link
+                href="/services#catering"
+                className="transition-colors hover:text-heritage-green"
+              >
+                Catering
+              </Link>
             </p>
           </FadeIn>
         </div>

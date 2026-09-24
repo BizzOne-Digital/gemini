@@ -160,7 +160,7 @@ export const DEFAULT_SITE_SETTINGS: SiteSettingsData = {
   timezone: "America/Toronto",
   businessHours: DEFAULT_BUSINESS_HOURS,
   facebookUrl: "https://www.facebook.com/Homestyledinerwaterloo/",
-  instagramUrl: "",
+  instagramUrl: "https://www.instagram.com/homestyledinerwaterloo/",
   orderOnlineUrl: "",
   logos: {
     main: "/images/logo.png",

@@ -37,6 +37,8 @@ import {
 } from "@/components/public/animations/StaggerChildren";
 import { TestimonialCard } from "@/components/public/TestimonialCard";
 import { formatPrice, formatPhone } from "@/lib/utils";
+import { mergeFeaturedReviews } from "@/lib/google-review-fallbacks";
+import { SIGNATURE_ROLLED_RIBS } from "@/lib/signature-dish";
 import { getSection, getFullAddress, getPhoneHref } from "@/types/site";
 import type { MenuCategoryData, MenuItemData, ServiceData, TestimonialData } from "@/types/site";
 
@@ -68,6 +70,12 @@ export default async function HomePage() {
     ]);
 
   const homeCategories = resolveHomeMenuCategories(categories);
+
+  const featuredReviews = mergeFeaturedReviews(testimonials, 3);
+
+  const otherFeaturedItems = featuredItems.filter(
+    (item) => !item.name.toLowerCase().includes("rolled rib")
+  );
 
   const heroSection = getSection(pageContent?.sections, "hero");
   const welcomeSection = getSection(pageContent?.sections, "welcome");
@@ -224,9 +232,42 @@ export default async function HomePage() {
             </Button>
           </FadeIn>
 
-          {featuredItems.length > 0 ? (
+          <FadeIn className="mb-8">
+            <Link
+              href={SIGNATURE_ROLLED_RIBS.menuHref}
+              className="group block overflow-hidden rounded-3xl border border-heritage-green/15 bg-gradient-to-br from-white via-warm-cream to-soft-oat/40 shadow-elevated transition-shadow hover:shadow-soft"
+            >
+              <div className="grid items-center gap-6 md:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)]">
+                <div className="relative aspect-[4/3] md:aspect-auto md:min-h-[220px]">
+                  <Image
+                    src={SIGNATURE_ROLLED_RIBS.image}
+                    alt={SIGNATURE_ROLLED_RIBS.imageAlt}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+                    sizes="(max-width: 768px) 100vw, 40vw"
+                  />
+                </div>
+                <div className="p-6 md:p-8">
+                  <p className="text-xs font-bold uppercase tracking-[0.2em] text-heritage-green">
+                    Signature Dish
+                  </p>
+                  <h3 className="mt-2 font-display text-2xl text-espresso sm:text-3xl">
+                    {SIGNATURE_ROLLED_RIBS.name}
+                  </h3>
+                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                    {SIGNATURE_ROLLED_RIBS.description}
+                  </p>
+                  <p className="mt-4 font-semibold text-heritage-green">
+                    {formatPrice(SIGNATURE_ROLLED_RIBS.price)}
+                  </p>
+                </div>
+              </div>
+            </Link>
+          </FadeIn>
+
+          {otherFeaturedItems.length > 0 ? (
             <StaggerChildren className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {featuredItems.slice(0, 6).map((item: MenuItemData) => (
+              {otherFeaturedItems.slice(0, 5).map((item: MenuItemData) => (
                 <StaggerItem key={item._id}>
                   <Card hover padding="md" className="h-full">
                     <div className="flex items-start justify-between gap-2">
@@ -474,9 +515,9 @@ export default async function HomePage() {
             />
           </FadeIn>
 
-          {testimonials.length > 0 ? (
+          {featuredReviews.length > 0 ? (
             <StaggerChildren className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {testimonials.slice(0, 3).map((t) => (
+              {featuredReviews.map((t) => (
                 <StaggerItem key={t._id}>
                   <TestimonialCard testimonial={t} featured />
                 </StaggerItem>
@@ -501,7 +542,7 @@ export default async function HomePage() {
             </FadeIn>
           )}
 
-          {testimonials.length > 0 && (
+          {featuredReviews.length > 0 && (
             <FadeIn className="mt-10 text-center">
               <Button
                 href="/testimonials"

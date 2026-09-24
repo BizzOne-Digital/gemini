@@ -1,14 +1,15 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
 import { toast } from "sonner";
 import { LocalImageField } from "@/components/admin/LocalImageField";
 
 export default function SettingsPage() {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
-  const { register, handleSubmit, reset, setValue, watch } = useForm();
+  const { register, handleSubmit, reset, setValue, control } = useForm();
+  const logoMain = useWatch({ control, name: "logos.main" });
 
   useEffect(() => {
     fetch("/api/admin/settings")
@@ -29,8 +30,6 @@ export default function SettingsPage() {
   };
 
   if (loading) return <div className="text-muted-foreground">Loading settings...</div>;
-
-  const logoMain = watch("logos.main");
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="mx-auto max-w-3xl space-y-8">

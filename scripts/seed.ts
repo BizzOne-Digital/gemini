@@ -60,6 +60,7 @@ async function seed() {
         { day: "Sunday", open: "9:00 AM", close: "7:00 PM", isClosed: false },
       ],
       facebookUrl: "https://www.facebook.com/Homestyledinerwaterloo/",
+      instagramUrl: "https://www.instagram.com/homestyledinerwaterloo/",
       footerDescription:
         "Family-owned and operated in Waterloo since 1987. Homemade comfort food, served with heart.",
       pricingDisclaimer: "Menu items, pricing, and availability are subject to change.",

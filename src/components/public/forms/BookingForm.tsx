@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner";
 import { CalendarCheck, Loader2 } from "lucide-react";
@@ -31,14 +31,14 @@ export function BookingForm({ bookingEnabled = true }: BookingFormProps) {
     register,
     handleSubmit,
     reset,
-    watch,
+    control,
     formState: { errors },
   } = useForm<BookingFormData>({
     resolver: zodResolver(bookingSchema),
     defaultValues: { numberOfGuests: 2 },
   });
 
-  const requestType = watch("requestType");
+  const requestType = useWatch({ control, name: "requestType" });
 
   if (!bookingEnabled) {
     return (

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner";
 import { Star, Loader2 } from "lucide-react";
@@ -30,14 +30,14 @@ export function TestimonialForm() {
     handleSubmit,
     reset,
     setValue,
-    watch,
+    control,
     formState: { errors },
   } = useForm<TestimonialFormData>({
     resolver: zodResolver(testimonialSchema),
     defaultValues: { rating: 5 },
   });
 
-  const rating = watch("rating");
+  const rating = useWatch({ control, name: "rating" });
 
   async function onSubmit(data: TestimonialFormData) {
     setSubmitting(true);

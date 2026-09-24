@@ -26,8 +26,8 @@ export async function generateMetadata(): Promise<Metadata> {
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://homestylediner.ca";
 
 const SERVICE_IMAGES: Record<string, string> = {
-  breakfast: SITE_PHOTOS.foodFishChips,
-  lunch: SITE_PHOTOS.catering,
+  breakfast: SITE_PHOTOS.breakfastBenedict,
+  lunch: SITE_PHOTOS.lunchBurger,
   dinner: SITE_PHOTOS.foodDinner,
   bakery: SITE_PHOTOS.bakery,
   "bakery-desserts": SITE_PHOTOS.bakeryAlt,
@@ -131,6 +131,7 @@ export default async function ServicesPage() {
 
               return (
                 <StaggerItem key={service._id}>
+                  <div id={service.slug} className="scroll-mt-28">
                   <div className="grid items-stretch gap-8 lg:grid-cols-2 lg:gap-10">
                     {/* Image */}
                     <div
@@ -171,6 +172,7 @@ export default async function ServicesPage() {
                         </div>
                       </div>
                     </div>
+                  </div>
                   </div>
                 </StaggerItem>
               );

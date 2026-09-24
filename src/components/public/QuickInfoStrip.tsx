@@ -40,7 +40,7 @@ export function QuickInfoStrip({ settings }: QuickInfoStripProps) {
       <div className="container-diner">
         <FadeIn>
           <div className="gradient-border glow-green rounded-2xl shadow-elevated">
-            <div className="grid gap-2 bg-gradient-to-br from-white via-warm-cream to-soft-oat/60 p-3 sm:grid-cols-2 sm:gap-1 sm:p-4 lg:grid-cols-4 lg:p-5">
+            <div className="grid gap-2 bg-gradient-to-br from-white via-warm-cream to-soft-oat/60 p-3 sm:grid-cols-2 sm:gap-1 sm:p-4 lg:grid-cols-4 lg:gap-2 lg:p-5">
               {items.map((item) => {
                 const Icon = item.icon;
                 const content = (
@@ -48,17 +48,25 @@ export function QuickInfoStrip({ settings }: QuickInfoStripProps) {
                     <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-heritage-green/15 to-fresh-leaf/20 text-heritage-green">
                       <Icon className="h-5 w-5" />
                     </div>
-                    <div className="min-w-0">
-                      <p className="text-xs font-bold uppercase tracking-wider text-espresso">
-                        {item.label}
-                      </p>
+                    <div className="min-w-0 flex-1">
                       {"hours" in item && item.hours ? (
-                        <div className="mt-1">
-                          <BusinessHoursDisplay hours={item.hours} variant="today" />
-                        </div>
+                        <>
+                          <p className="text-xs font-bold uppercase tracking-wider text-espresso">
+                            {item.label}
+                          </p>
+                          <div className="mt-1">
+                            <BusinessHoursDisplay hours={item.hours} variant="today" />
+                          </div>
+                        </>
                       ) : (
-                        <p className="mt-0.5 break-words text-sm font-semibold leading-snug text-charcoal">
-                          {item.value}
+                        <p className="text-sm font-semibold leading-snug text-charcoal lg:whitespace-nowrap">
+                          <span className="text-xs font-bold uppercase tracking-wider text-espresso">
+                            {item.label}
+                          </span>
+                          <span className="mx-1.5 hidden text-espresso/40 lg:inline">
+                            ·
+                          </span>
+                          <span className="block lg:inline">{item.value}</span>
                         </p>
                       )}
                     </div>

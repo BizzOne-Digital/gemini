@@ -1,18 +1,19 @@
 import type { MenuCategoryData } from "@/types/site";
+import { SITE_PHOTOS } from "@/lib/site-photos";
 
-/** Homepage “Browse by Craving” cards — image + slug order (ss 1–6). */
+/** Homepage “Browse by Craving” cards — image + slug order. */
 export const HOME_MENU_CATEGORY_CARDS = [
   {
     slug: "breakfast",
     name: "Breakfast",
-    image: "/images/categories/breakfast.jpg",
-    imageAlt: "Hearty breakfast with pancakes, eggs, bacon, and home fries",
+    image: SITE_PHOTOS.breakfastBenedict,
+    imageAlt: "Eggs Benedict breakfast at Homestyle Diner",
   },
   {
     slug: "lunch",
     name: "Lunch",
-    image: "/images/categories/lunch.jpg",
-    imageAlt: "Club sandwiches with fries and coleslaw",
+    image: SITE_PHOTOS.lunchBurger,
+    imageAlt: "Bacon cheeseburger with fries",
   },
   {
     slug: "dinner",
@@ -21,13 +22,13 @@ export const HOME_MENU_CATEGORY_CARDS = [
     imageAlt: "Homestyle dinner plate with roasted meat and potatoes",
   },
   {
-    slug: "desserts",
+    slug: "bakery-desserts",
     name: "Bakery & Desserts",
     image: "/images/categories/bakery-desserts.jpg",
     imageAlt: "Strawberry pie and brownie sundae",
   },
   {
-    slug: "kids",
+    slug: "kids-menu",
     name: "Kids' Meals",
     image: "/images/categories/kids.jpg",
     imageAlt: "Pancakes with berries for kids",
@@ -41,8 +42,8 @@ export const HOME_MENU_CATEGORY_CARDS = [
 ] as const;
 
 const SLUG_ALIASES: Record<string, string[]> = {
-  desserts: ["bakery-desserts", "bakery"],
-  kids: ["kids-meals"],
+  "bakery-desserts": ["bakery-desserts", "bakery", "desserts"],
+  "kids-menu": ["kids-menu", "kids-meals", "kids"],
 };
 
 export type HomeMenuCategoryCard = {

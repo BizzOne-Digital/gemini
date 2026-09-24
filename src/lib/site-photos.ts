@@ -25,6 +25,10 @@ export const SITE_PHOTOS = {
   catering: photoUrl("WhatsApp Image 2026-09-13 at 12.42.08 PM.jpeg"),
   /** Group / interior */
   groupDining: photoUrl("1 (4).JPEG"),
+  /** Gallery — services / category highlights */
+  breakfastBenedict: "/images/gallery/20-eggs-benedict.png",
+  lunchBurger: "/images/gallery/09-bacon-cheeseburger.png",
+  rolledRibs: "/images/gallery/03-homestyle-dinner-plate.png",
 } as const;
 
 /** Rotating defaults when menu/category has no image */

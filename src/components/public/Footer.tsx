@@ -157,7 +157,7 @@ export function Footer({ navigation, settings }: FooterProps) {
                   href={getPhoneHref(settings.phone)}
                   className="flex items-start gap-3 text-sm text-warm-cream/75 transition-colors hover:text-warm-cream"
                 >
-                  <Phone className="mt-0.5 h-4 w-4 shrink-0 text-fresh-leaf" />
+                  <Phone className="mt-0.5 h-4 w-4 shrink-0 text-butter-gold" />
                   {formatPhone(settings.phone)}
                 </a>
               </li>
@@ -166,7 +166,7 @@ export function Footer({ navigation, settings }: FooterProps) {
                   href={`mailto:${settings.primaryEmail}`}
                   className="flex items-start gap-3 text-sm text-warm-cream/75 transition-colors hover:text-warm-cream"
                 >
-                  <Mail className="mt-0.5 h-4 w-4 shrink-0 text-fresh-leaf" />
+                  <Mail className="mt-0.5 h-4 w-4 shrink-0 text-butter-gold" />
                   {settings.primaryEmail}
                 </a>
               </li>
@@ -180,7 +180,7 @@ export function Footer({ navigation, settings }: FooterProps) {
                   rel="noopener noreferrer"
                   className="flex items-start gap-3 text-sm text-warm-cream/75 transition-colors hover:text-warm-cream"
                 >
-                  <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-fresh-leaf" />
+                  <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-butter-gold" />
                   {getFullAddress(settings)}
                 </a>
               </li>
@@ -192,7 +192,7 @@ export function Footer({ navigation, settings }: FooterProps) {
               Hours
             </h3>
             <div className="mt-4 flex items-start gap-3">
-              <Clock className="mt-0.5 h-4 w-4 shrink-0 text-fresh-leaf" />
+              <Clock className="mt-0.5 h-4 w-4 shrink-0 text-butter-gold" />
               <div className="min-w-0 flex-1">
                 <BusinessHoursDisplay hours={hours} variant="list" light />
                 {settings.parkingNotes && (

@@ -57,12 +57,12 @@ async function main() {
 
   const serviceImages: Record<string, { image: string; imageAlt: string }> = {
     breakfast: {
-      image: SITE_PHOTOS.foodFishChips,
-      imageAlt: "Classic fish and chips at Homestyle Diner",
+      image: SITE_PHOTOS.breakfastBenedict,
+      imageAlt: "Eggs Benedict at Homestyle Diner",
     },
     lunch: {
-      image: SITE_PHOTOS.catering,
-      imageAlt: "Catering sandwich and wrap platters",
+      image: SITE_PHOTOS.lunchBurger,
+      imageAlt: "Bacon cheeseburger with fries",
     },
     dinner: {
       image: SITE_PHOTOS.foodDinner,

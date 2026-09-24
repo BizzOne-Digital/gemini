@@ -57,7 +57,9 @@ export async function POST(req: NextRequest) {
       performedByEmail: session.user.email,
     });
 
-    const { password: _password, ...userWithoutPassword } = user.toObject();
+    // Password hash must not be returned to the client.
+    const { password: _omitPassword, ...userWithoutPassword } = user.toObject();
+    void _omitPassword;
     return NextResponse.json(userWithoutPassword, { status: 201 });
   } catch {
     return serverError("Failed to create user");

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { buildPageMetadata } from "@/lib/metadata";
 import {
   getMenuCategories,
@@ -10,6 +11,7 @@ import { MenuBrowser } from "@/components/public/MenuBrowser";
 import { FadeIn } from "@/components/public/animations/FadeIn";
 import { BreadcrumbStructuredData } from "@/components/seo/StructuredData";
 import type { MenuCategoryData, MenuItemData } from "@/types/site";
+import type { MenuGroupId } from "@/lib/menu-groups";
 
 export async function generateMetadata(): Promise<Metadata> {
   return buildPageMetadata("/menu", {
@@ -21,7 +23,23 @@ export async function generateMetadata(): Promise<Metadata> {
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://homestylediner.ca";
 
-export default async function MenuPage() {
+type MenuPageProps = {
+  searchParams: Promise<{ category?: string; group?: string }>;
+};
+
+function resolveGroup(param?: string): MenuGroupId {
+  if (param === "lunch-dinner") return "lunch-dinner";
+  if (param === "bakery-desserts") return "bakery-desserts";
+  if (param === "drinks") return "drinks";
+  if (param === "specials") return "specials";
+  return "breakfast";
+}
+
+export default async function MenuPage({ searchParams }: MenuPageProps) {
+  const params = await searchParams;
+  const initialGroup = resolveGroup(params.group);
+  const initialCategory = params.category;
+
   const [categories, items, settings] = await Promise.all([
     getMenuCategories().catch((): MenuCategoryData[] => []),
     getMenuItems().catch((): MenuItemData[] => []),
@@ -52,7 +70,14 @@ export default async function MenuPage() {
 
       <section className="section-safe py-12 sm:py-16 lg:py-20">
         <div className="container-diner">
-          <MenuBrowser categories={categories} items={items} />
+          <Suspense fallback={<div className="h-40 animate-pulse rounded-2xl bg-soft-oat/50" />}>
+            <MenuBrowser
+              categories={categories}
+              items={items}
+              initialGroup={initialGroup}
+              initialCategory={initialCategory}
+            />
+          </Suspense>
 
           <FadeIn className="mt-12 rounded-xl bg-soft-oat/60 p-4 text-center text-sm text-muted-foreground">
             {settings.pricingDisclaimer}

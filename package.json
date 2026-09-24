@@ -13,7 +13,8 @@
     "reset-admin": "tsx scripts/reset-admin.ts",
     "apply-site-photos": "tsx scripts/apply-site-photos.ts",
     "add-gallery-nav": "tsx scripts/add-gallery-nav.ts",
-    "import-catalog": "tsx scripts/import-homestyle-catalog.ts"
+    "import-catalog": "tsx scripts/import-homestyle-catalog.ts",
+    "reorganize-menu-rev2": "tsx scripts/reorganize-menu-rev2.ts"
   },
   "engines": {
     "node": ">=20"

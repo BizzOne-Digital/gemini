@@ -9,10 +9,10 @@ interface QuickInfoStripProps {
 }
 
 const cellClassName =
-  "flex shrink-0 items-center gap-2.5 rounded-xl p-2.5 sm:gap-3 sm:p-3";
+  "flex min-w-0 w-full items-center gap-2.5 rounded-xl p-2.5 sm:gap-3 sm:p-3";
 
 const lineClassName =
-  "whitespace-nowrap text-[13px] font-semibold leading-none text-charcoal sm:text-sm";
+  "text-[12px] font-semibold leading-snug text-charcoal sm:text-sm sm:leading-snug";
 
 function InfoLine({ label, value }: { label: string; value: string }) {
   return (
@@ -23,7 +23,7 @@ function InfoLine({ label, value }: { label: string; value: string }) {
       <span className="mx-1.5 text-espresso/35" aria-hidden>
         ·
       </span>
-      <span>{value}</span>
+      <span className="text-espresso">{value}</span>
     </p>
   );
 }
@@ -70,8 +70,7 @@ export function QuickInfoStrip({ settings }: QuickInfoStripProps) {
       <div className="container-diner">
         <FadeIn>
           <div className="gradient-border glow-green rounded-2xl shadow-elevated">
-            <div className="overflow-x-auto overscroll-x-contain bg-gradient-to-br from-white via-warm-cream to-soft-oat/60 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-              <div className="flex w-max min-w-full flex-nowrap items-center gap-1 p-2 sm:gap-2 sm:p-3 lg:justify-between lg:gap-3 lg:p-4 xl:w-full xl:justify-between">
+            <div className="grid grid-cols-2 gap-2 bg-gradient-to-br from-white via-warm-cream to-soft-oat/60 p-3 sm:gap-3 sm:p-4">
                 {items.map((item) => {
                   const Icon = item.icon;
                   const inner = (
@@ -107,7 +106,6 @@ export function QuickInfoStrip({ settings }: QuickInfoStripProps) {
                     </div>
                   );
                 })}
-              </div>
             </div>
           </div>
         </FadeIn>

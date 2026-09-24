@@ -11,13 +11,8 @@ import {
   MessageSquareQuote,
   CalendarDays,
   Mail,
-  Image,
-  FileText,
-  Navigation,
   Settings,
-  Search,
   Users,
-  ScrollText,
   ChevronLeft,
   ChevronRight,
 } from "lucide-react";
@@ -31,15 +26,10 @@ const navItems = [
   { href: "/admin/menu/import", label: "Import Menu", icon: FileUp },
   { href: "/admin/services", label: "Services", icon: Briefcase },
   { href: "/admin/testimonials", label: "Testimonials", icon: MessageSquareQuote },
-  { href: "/admin/bookings", label: "Bookings", icon: CalendarDays },
+  { href: "/admin/bookings", label: "Orders & Bookings", icon: CalendarDays },
   { href: "/admin/inquiries", label: "Inquiries", icon: Mail },
-  { href: "/admin/media", label: "Media", icon: Image },
-  { href: "/admin/content", label: "Content", icon: FileText },
-  { href: "/admin/navigation", label: "Navigation", icon: Navigation },
   { href: "/admin/settings", label: "Settings", icon: Settings },
-  { href: "/admin/seo", label: "SEO", icon: Search },
   { href: "/admin/users", label: "Users", icon: Users, superAdminOnly: true },
-  { href: "/admin/audit-logs", label: "Audit Logs", icon: ScrollText },
 ];
 
 interface AdminSidebarProps {

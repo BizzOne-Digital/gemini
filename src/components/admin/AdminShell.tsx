@@ -12,15 +12,10 @@ const pageTitles: Record<string, string> = {
   "/admin/menu/import": "Import Menu",
   "/admin/services": "Services",
   "/admin/testimonials": "Testimonials",
-  "/admin/bookings": "Bookings",
+  "/admin/bookings": "Orders & Bookings",
   "/admin/inquiries": "Inquiries",
-  "/admin/media": "Media Library",
-  "/admin/content": "Page Content",
-  "/admin/navigation": "Navigation",
   "/admin/settings": "Site Settings",
-  "/admin/seo": "SEO Settings",
   "/admin/users": "User Management",
-  "/admin/audit-logs": "Audit Logs",
 };
 
 export function AdminShell({ children }: { children: React.ReactNode }) {

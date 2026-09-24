@@ -9,18 +9,22 @@ interface QuickInfoStripProps {
   settings: SiteSettingsData;
 }
 
+const cellClassName =
+  "flex min-w-0 items-start gap-3 overflow-hidden rounded-xl p-2.5";
+
 export function QuickInfoStrip({ settings }: QuickInfoStripProps) {
   const hours = settings.businessHours?.length ? settings.businessHours : [];
+  const fullAddress = getFullAddress(settings);
 
   const items = [
     { icon: Clock, label: "Today's Hours", hours },
     {
       icon: MapPin,
       label: "Visit Us",
-      value: getFullAddress(settings),
+      value: fullAddress,
       href:
         settings.directionsUrl ||
-        `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(getFullAddress(settings))}`,
+        `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(fullAddress)}`,
     },
     {
       icon: Phone,
@@ -40,7 +44,7 @@ export function QuickInfoStrip({ settings }: QuickInfoStripProps) {
       <div className="container-diner">
         <FadeIn>
           <div className="gradient-border glow-green rounded-2xl shadow-elevated">
-            <div className="grid gap-2 bg-gradient-to-br from-white via-warm-cream to-soft-oat/60 p-3 sm:grid-cols-2 sm:gap-1 sm:p-4 lg:grid-cols-4 lg:gap-2 lg:p-5">
+            <div className="grid min-w-0 gap-3 bg-gradient-to-br from-white via-warm-cream to-soft-oat/60 p-3 sm:grid-cols-2 sm:p-4 lg:grid-cols-2 lg:gap-4 lg:p-5 xl:grid-cols-4">
               {items.map((item) => {
                 const Icon = item.icon;
                 const content = (
@@ -48,26 +52,28 @@ export function QuickInfoStrip({ settings }: QuickInfoStripProps) {
                     <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-heritage-green/15 to-fresh-leaf/20 text-heritage-green">
                       <Icon className="h-5 w-5" />
                     </div>
-                    <div className="min-w-0 flex-1">
+                    <div className="min-w-0 flex-1 overflow-hidden">
                       {"hours" in item && item.hours ? (
                         <>
                           <p className="text-xs font-bold uppercase tracking-wider text-espresso">
                             {item.label}
                           </p>
-                          <div className="mt-1">
+                          <div className="mt-1 min-w-0">
                             <BusinessHoursDisplay hours={item.hours} variant="today" />
                           </div>
                         </>
                       ) : (
-                        <p className="text-sm font-semibold leading-snug text-charcoal lg:whitespace-nowrap">
-                          <span className="text-xs font-bold uppercase tracking-wider text-espresso">
+                        <>
+                          <p className="text-xs font-bold uppercase tracking-wider text-espresso">
                             {item.label}
-                          </span>
-                          <span className="mx-1.5 hidden text-espresso/40 lg:inline">
-                            ·
-                          </span>
-                          <span className="block lg:inline">{item.value}</span>
-                        </p>
+                          </p>
+                          <p
+                            className="mt-0.5 truncate text-sm font-semibold leading-snug text-charcoal xl:whitespace-nowrap"
+                            title={item.value}
+                          >
+                            {item.value}
+                          </p>
+                        </>
                       )}
                     </div>
                   </>
@@ -84,7 +90,7 @@ export function QuickInfoStrip({ settings }: QuickInfoStripProps) {
                           ? "noopener noreferrer"
                           : undefined
                       }
-                      className="flex items-center gap-3 rounded-xl p-2.5 transition-all hover:bg-gradient-to-r hover:from-soft-oat/50 hover:to-fresh-leaf/10"
+                      className={`${cellClassName} transition-all hover:bg-gradient-to-r hover:from-soft-oat/50 hover:to-fresh-leaf/10`}
                     >
                       {content}
                     </a>
@@ -92,10 +98,7 @@ export function QuickInfoStrip({ settings }: QuickInfoStripProps) {
                 }
 
                 return (
-                  <div
-                    key={item.label}
-                    className="flex items-center gap-3 rounded-xl p-2.5"
-                  >
+                  <div key={item.label} className={cellClassName}>
                     {content}
                   </div>
                 );

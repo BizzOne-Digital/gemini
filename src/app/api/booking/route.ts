@@ -9,6 +9,7 @@ import {
   bookingConfirmationEmail,
   bookingAdminNotification,
 } from "@/lib/email";
+import { resolveAdminNotificationEmail } from "@/lib/notification-email";
 
 export async function POST(req: NextRequest) {
   try {
@@ -57,6 +58,8 @@ export async function POST(req: NextRequest) {
     };
     if (parsed.data.companyName) emailData.Company = parsed.data.companyName;
 
+    const adminEmail = await resolveAdminNotificationEmail();
+
     await Promise.all([
       sendEmail({
         to: parsed.data.email,
@@ -64,7 +67,7 @@ export async function POST(req: NextRequest) {
         html: bookingConfirmationEmail(parsed.data.fullName, referenceNumber),
       }),
       sendEmail({
-        to: process.env.ADMIN_NOTIFICATION_EMAIL || process.env.SMTP_USER || "",
+        to: adminEmail,
         subject: `New Booking Request - ${referenceNumber}`,
         html: bookingAdminNotification(emailData),
       }),

@@ -27,6 +27,7 @@ export const SITE_PHOTOS = {
   groupDining: photoUrl("1 (4).JPEG"),
   /** Gallery — services / category highlights */
   breakfastBenedict: "/images/gallery/20-eggs-benedict.png",
+  breakfastOmelette: "/images/gallery/14-breakfast-omelette.png",
   lunchBurger: "/images/gallery/09-bacon-cheeseburger.png",
   rolledRibs: "/images/gallery/03-homestyle-dinner-plate.png",
 } as const;

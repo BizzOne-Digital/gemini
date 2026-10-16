@@ -168,7 +168,7 @@ export default async function HomePage() {
             <StaggerChildren className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {homeCategories.map((cat) => (
                 <StaggerItem key={cat.slug}>
-                  <Link href={`/menu?category=${cat.menuSlug}`}>
+                  <Link href={cat.menuHref}>
                     <Card hover padding="none" className="group h-full overflow-hidden">
                       <div className="relative aspect-[16/10] bg-soft-oat">
                         <Image

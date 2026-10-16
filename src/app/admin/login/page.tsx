@@ -27,7 +27,13 @@ export default function AdminLoginPage() {
       });
 
       if (result?.error) {
-        toast.error("Invalid email or password");
+        if (result.error === "Configuration") {
+          toast.error(
+            "Admin login is not configured on the server. Set AUTH_SECRET, MONGODB_URI, and NEXTAUTH_URL in hosting."
+          );
+        } else {
+          toast.error("Invalid email or password");
+        }
         return;
       }
 
@@ -94,6 +100,11 @@ export default function AdminLoginPage() {
             </button>
           </div>
         </form>
+
+        <p className="mt-6 text-center text-xs text-muted-foreground">
+          Admin requires MongoDB and AUTH_SECRET on the live site. If login fails after
+          deploy, confirm Vercel env vars and run reset-admin against your database.
+        </p>
       </div>
     </div>
   );

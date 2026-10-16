@@ -20,8 +20,7 @@ export default function CheckoutPage() {
     customerName: "",
     customerEmail: "",
     customerPhone: "",
-    fulfillment: "pickup" as "pickup" | "delivery",
-    deliveryAddress: "",
+    fulfillment: "pickup" as const,
     pickupTime: "",
     notes: "",
   });
@@ -30,9 +29,9 @@ export default function CheckoutPage() {
     () =>
       computeOrderTotals(lines, {
         taxRate: TAX_RATE,
-        fulfillment: form.fulfillment,
+        fulfillment: "pickup",
       }),
-    [lines, form.fulfillment]
+    [lines]
   );
 
   if (itemCount === 0) {
@@ -55,7 +54,7 @@ export default function CheckoutPage() {
       const res = await fetch("/api/orders/checkout", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...form, lines }),
+        body: JSON.stringify({ ...form, fulfillment: "pickup", lines }),
       });
       const data = await res.json();
       if (!res.ok) {
@@ -76,6 +75,9 @@ export default function CheckoutPage() {
     <section className="section-safe py-12 pt-[calc(var(--header-height)+2rem)]">
       <div className="container-diner mx-auto max-w-2xl">
         <h1 className="font-display text-3xl text-espresso">Checkout</h1>
+        <p className="mt-2 text-sm text-muted-foreground">
+          Pickup only at 504 Albert St, Waterloo.
+        </p>
 
         <form onSubmit={handleSubmit} className="mt-8 space-y-6">
           <Input
@@ -98,43 +100,12 @@ export default function CheckoutPage() {
             onChange={(e) => setForm({ ...form, customerPhone: e.target.value })}
           />
 
-          <div>
-            <p className="mb-2 text-sm font-medium">Fulfillment</p>
-            <div className="flex gap-3">
-              {(["pickup", "delivery"] as const).map((f) => (
-                <button
-                  key={f}
-                  type="button"
-                  onClick={() => setForm({ ...form, fulfillment: f })}
-                  className={`rounded-full border px-4 py-2 text-sm capitalize ${
-                    form.fulfillment === f
-                      ? "border-heritage-green bg-heritage-green/10 text-heritage-green"
-                      : "border-border"
-                  }`}
-                >
-                  {f}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {form.fulfillment === "pickup" ? (
-            <Input
-              label="Preferred pickup time (optional)"
-              placeholder="e.g. Today at 12:30 PM"
-              value={form.pickupTime}
-              onChange={(e) => setForm({ ...form, pickupTime: e.target.value })}
-            />
-          ) : (
-            <Input
-              label="Delivery address"
-              required
-              value={form.deliveryAddress}
-              onChange={(e) =>
-                setForm({ ...form, deliveryAddress: e.target.value })
-              }
-            />
-          )}
+          <Input
+            label="Preferred pickup time (optional)"
+            placeholder="e.g. Today at 12:30 PM"
+            value={form.pickupTime}
+            onChange={(e) => setForm({ ...form, pickupTime: e.target.value })}
+          />
 
           <div>
             <label className="mb-1 block text-sm font-medium">Order notes</label>

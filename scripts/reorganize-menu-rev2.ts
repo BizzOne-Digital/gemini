@@ -144,9 +144,11 @@ async function patchSettings() {
     {},
     {
       $set: {
-        instagramUrl: "https://www.instagram.com/homestyledinerwaterloo/",
+        instagramUrl: "https://www.instagram.com/homestyle.diner/?hl=en",
         onlineOrderingEnabled: true,
         shopEnabled: true,
+        deliveryEnabled: false,
+        notificationEmail: "homestylewaterloo@gmail.com",
       },
     },
     { upsert: true }

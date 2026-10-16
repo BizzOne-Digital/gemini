@@ -2,6 +2,25 @@ import type { MenuCategoryData } from "@/types/site";
 import { SITE_PHOTOS } from "@/lib/site-photos";
 
 /** Homepage “Browse by Craving” cards — image + slug order. */
+/** Menu URLs for homepage “Browse by Craving” cards (must include `group`, not legacy category slugs). */
+export function homeCategoryMenuHref(cardSlug: string): string {
+  switch (cardSlug) {
+    case "breakfast":
+      return "/menu/breakfast";
+    case "lunch":
+    case "dinner":
+      return "/menu/lunch-and-dinner";
+    case "bakery-desserts":
+      return "/menu?group=bakery-desserts";
+    case "kids-menu":
+      return "/menu?group=lunch-dinner&category=kids-menu";
+    case "drinks":
+      return "/menu?group=drinks";
+    default:
+      return "/menu";
+  }
+}
+
 export const HOME_MENU_CATEGORY_CARDS = [
   {
     slug: "breakfast",
@@ -53,7 +72,7 @@ export type HomeMenuCategoryCard = {
   imageAlt: string;
   description?: string;
   startingPrice?: number;
-  menuSlug: string;
+  menuHref: string;
 };
 
 function findDbCategory(
@@ -74,7 +93,7 @@ export function resolveHomeMenuCategories(
       name: db?.name === "Desserts" ? card.name : db?.name ?? card.name,
       description: db?.description,
       startingPrice: db?.startingPrice,
-      menuSlug: db?.slug ?? card.slug,
+      menuHref: homeCategoryMenuHref(card.slug),
     };
   });
 }

@@ -11,7 +11,11 @@ import { MenuBrowserWithCart } from "@/components/public/MenuBrowserWithCart";
 import { FadeIn } from "@/components/public/animations/FadeIn";
 import { BreadcrumbStructuredData } from "@/components/seo/StructuredData";
 import type { MenuCategoryData, MenuItemData } from "@/types/site";
-import type { MenuGroupId } from "@/lib/menu-groups";
+import {
+  groupForCategorySlug,
+  resolveMenuCategorySlug,
+  type MenuGroupId,
+} from "@/lib/menu-groups";
 
 export async function generateMetadata(): Promise<Metadata> {
   return buildPageMetadata("/menu", {
@@ -27,17 +31,41 @@ type MenuPageProps = {
   searchParams: Promise<{ category?: string; group?: string }>;
 };
 
-function resolveGroup(param?: string): MenuGroupId {
-  if (param === "lunch-dinner") return "lunch-dinner";
-  if (param === "bakery-desserts") return "bakery-desserts";
-  if (param === "drinks") return "drinks";
-  if (param === "specials") return "specials";
+const GROUP_PARAMS: MenuGroupId[] = [
+  "breakfast",
+  "lunch-dinner",
+  "bakery-desserts",
+  "drinks",
+  "specials",
+];
+
+function resolveGroup(groupParam?: string, categoryParam?: string): MenuGroupId {
+  if (groupParam && GROUP_PARAMS.includes(groupParam as MenuGroupId)) {
+    return groupParam as MenuGroupId;
+  }
+
+  if (categoryParam) {
+    const resolved = resolveMenuCategorySlug(categoryParam);
+    const fromCategory =
+      groupForCategorySlug(resolved) ?? groupForCategorySlug(categoryParam);
+    if (fromCategory) return fromCategory;
+
+    if (["lunch", "dinner", "kids-menu"].includes(categoryParam)) {
+      return "lunch-dinner";
+    }
+    if (categoryParam === "breakfast") return "breakfast";
+    if (["desserts", "bakery-desserts", "bakery"].includes(categoryParam)) {
+      return "bakery-desserts";
+    }
+    if (categoryParam === "drinks") return "drinks";
+  }
+
   return "breakfast";
 }
 
 export default async function MenuPage({ searchParams }: MenuPageProps) {
   const params = await searchParams;
-  const initialGroup = resolveGroup(params.group);
+  const initialGroup = resolveGroup(params.group, params.category);
   const initialCategory = params.category;
 
   const [categories, items, settings] = await Promise.all([

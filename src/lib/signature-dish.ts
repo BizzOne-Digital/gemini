@@ -8,5 +8,5 @@ export const SIGNATURE_ROLLED_RIBS = {
   price: 19.99,
   image: SITE_PHOTOS.rolledRibs,
   imageAlt: "Homestyle rolled ribs dinner plate",
-  menuHref: "/menu/lunch-and-dinner?category=homestyle-signature",
+  menuHref: "/menu/lunch-and-dinner?group=lunch-dinner&category=homestyle-signature",
 } as const;

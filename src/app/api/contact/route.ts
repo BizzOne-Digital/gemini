@@ -8,6 +8,7 @@ import {
   contactConfirmationEmail,
   contactAdminNotification,
 } from "@/lib/email";
+import { resolveAdminNotificationEmail } from "@/lib/notification-email";
 
 export async function POST(req: NextRequest) {
   try {
@@ -47,6 +48,8 @@ export async function POST(req: NextRequest) {
       Message: parsed.data.message,
     };
 
+    const adminEmail = await resolveAdminNotificationEmail();
+
     await Promise.all([
       sendEmail({
         to: parsed.data.email,
@@ -54,7 +57,7 @@ export async function POST(req: NextRequest) {
         html: contactConfirmationEmail(parsed.data.fullName),
       }),
       sendEmail({
-        to: process.env.ADMIN_NOTIFICATION_EMAIL || process.env.SMTP_USER || "",
+        to: adminEmail,
         subject: `New Contact Inquiry from ${parsed.data.fullName}`,
         html: contactAdminNotification(emailData),
       }),

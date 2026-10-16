@@ -26,7 +26,7 @@ export async function generateMetadata(): Promise<Metadata> {
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://homestylediner.ca";
 
 const SERVICE_IMAGES: Record<string, string> = {
-  breakfast: SITE_PHOTOS.breakfastBenedict,
+  breakfast: SITE_PHOTOS.breakfastOmelette,
   lunch: SITE_PHOTOS.lunchBurger,
   dinner: SITE_PHOTOS.foodDinner,
   bakery: SITE_PHOTOS.bakery,

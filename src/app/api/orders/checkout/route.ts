@@ -12,7 +12,6 @@ import {
   getMonerisConfig,
   isMonerisConfigured,
   isValidCanadianPostalCode,
-  monerisCheckoutUrl,
   normalizeCanadianPostalCode,
   normalizeCanadianProvince,
   requestMonerisCheckoutTicket,
@@ -149,7 +148,8 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({
       orderId: order._id.toString(),
       orderNumber: order.orderNumber,
-      checkoutUrl: monerisCheckoutUrl(moneris.env, ticket),
+      ticket,
+      monerisMode: moneris.env,
     });
   } catch (err) {
     if (err instanceof z.ZodError) {

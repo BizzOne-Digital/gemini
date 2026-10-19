@@ -34,9 +34,10 @@ export function monerisGatewayBase(env: MonerisEnv): string {
     : "https://gatewayt.moneris.com";
 }
 
-export function monerisCheckoutUrl(env: MonerisEnv, ticket: string): string {
+/** Moneris Checkout v2 embed script (use with startCheckout(ticket), not index.php redirect). */
+export function monerisCheckoutScriptUrl(env: MonerisEnv): string {
   const base = monerisGatewayBase(env);
-  return `${base}/chkt/index.php?tck=${encodeURIComponent(ticket)}`;
+  return `${base}/chktv2/js/chkt_v3.00.min.js`;
 }
 
 export function isMonerisConfigured(): boolean {
@@ -193,7 +194,7 @@ export async function requestMonerisCheckoutTicket(params: {
     };
   }
 
-  const res = await fetch(`${base}/chkt/request/request.php`, {
+  const res = await fetch(`${base}/chktv2/request/request.php`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(payload),

@@ -7,6 +7,7 @@ import { toast } from "sonner";
 import { useCart } from "@/components/providers/CartProvider";
 import { computeOrderTotals } from "@/lib/order-utils";
 import { formatPrice } from "@/lib/utils";
+import { writeMonerisPaySession } from "@/components/order/MonerisCheckoutEmbed";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 
@@ -62,9 +63,17 @@ export default function CheckoutPage() {
         toast.error(data.error || "Checkout failed");
         return;
       }
-      sessionStorage.setItem("pendingOrderNumber", data.orderNumber);
+      if (!data.ticket) {
+        toast.error("Payment session could not be started.");
+        return;
+      }
+      writeMonerisPaySession(
+        data.ticket,
+        data.orderNumber,
+        data.monerisMode === "qa" ? "qa" : "prod"
+      );
       clearCart();
-      window.location.href = data.checkoutUrl;
+      router.push("/order/pay");
     } catch {
       toast.error("Unable to start payment. Please try again.");
     } finally {
@@ -156,7 +165,7 @@ export default function CheckoutPage() {
               Back
             </Button>
             <Button type="submit" disabled={submitting} className="flex-1">
-              {submitting ? "Redirecting to Moneris…" : "Pay with Moneris"}
+              {submitting ? "Starting payment…" : "Pay with Moneris"}
             </Button>
           </div>
         </form>

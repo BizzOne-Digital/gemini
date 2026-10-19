@@ -22,6 +22,7 @@ export default function CheckoutPage() {
     customerPhone: "",
     fulfillment: "pickup" as const,
     pickupTime: "",
+    billingPostalCode: "",
     notes: "",
   });
 
@@ -106,6 +107,21 @@ export default function CheckoutPage() {
             value={form.pickupTime}
             onChange={(e) => setForm({ ...form, pickupTime: e.target.value })}
           />
+
+          <Input
+            label="Billing postal code"
+            required
+            placeholder="e.g. N2L 3V4"
+            autoComplete="postal-code"
+            value={form.billingPostalCode}
+            onChange={(e) =>
+              setForm({ ...form, billingPostalCode: e.target.value })
+            }
+          />
+          <p className="text-xs text-muted-foreground">
+            Required for card verification (AVS). Use the postal code on your
+            payment card.
+          </p>
 
           <div>
             <label className="mb-1 block text-sm font-medium">Order notes</label>

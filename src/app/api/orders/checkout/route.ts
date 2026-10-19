@@ -32,6 +32,10 @@ const checkoutSchema = z.object({
   fulfillment: z.enum(["pickup", "delivery"]),
   deliveryAddress: z.string().max(500).optional(),
   pickupTime: z.string().max(120).optional(),
+  billingPostalCode: z
+    .string()
+    .min(5, "Billing postal code is required for card verification")
+    .max(10),
   notes: z.string().max(1000).optional(),
   lines: z.array(lineSchema).min(1),
 });
@@ -109,10 +113,19 @@ export async function POST(req: NextRequest) {
       currency: settings.currency || "CAD",
     });
 
+    const postal = body.billingPostalCode.replace(/\s+/g, " ").trim();
     const { ticket } = await requestMonerisCheckoutTicket({
       orderNumber: order.orderNumber,
       total: totals.total,
       customerEmail: body.customerEmail,
+      customerName: body.customerName,
+      billingDetails: {
+        address_1: settings.address || "504 Albert St",
+        city: settings.city || "Waterloo",
+        province: settings.province || "ON",
+        country: "CA",
+        postal_code: postal,
+      },
       siteUrl,
     });
 

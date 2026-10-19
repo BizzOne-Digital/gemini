@@ -36,14 +36,40 @@ type TicketResponse = {
   response?: {
     success?: string;
     ticket?: string;
-    error?: { message?: string };
+    error?: Record<string, unknown>;
   };
+};
+
+function formatMonerisError(error: Record<string, unknown> | undefined): string {
+  if (!error) return "Unable to start Moneris Checkout session.";
+  if (typeof error.message === "string" && error.message) return error.message;
+  const parts: string[] = [];
+  for (const [key, value] of Object.entries(error)) {
+    if (value && typeof value === "object" && "data" in value) {
+      const data = (value as { data?: string }).data;
+      if (data) parts.push(`${key}: ${data}`);
+    } else if (typeof value === "string") {
+      parts.push(`${key}: ${value}`);
+    }
+  }
+  return parts.length ? parts.join("; ") : "Unable to start Moneris Checkout session.";
+}
+
+export type MonerisBillingDetails = {
+  address_1: string;
+  city: string;
+  province: string;
+  country: string;
+  postal_code: string;
+  address_2?: string;
 };
 
 export async function requestMonerisCheckoutTicket(params: {
   orderNumber: string;
   total: number;
   customerEmail?: string;
+  customerName?: string;
+  billingDetails: MonerisBillingDetails;
   siteUrl: string;
 }): Promise<{ ticket: string }> {
   const { env, storeId, apiToken, checkoutId, descriptor } =
@@ -56,25 +82,37 @@ export async function requestMonerisCheckoutTicket(params: {
   }
 
   const base = monerisGatewayBase(env);
-  const body = new URLSearchParams({
+  const environment = env === "prod" ? "prod" : "qa";
+  const payload: Record<string, unknown> = {
     store_id: storeId,
     api_token: apiToken,
     checkout_id: checkoutId,
     txn_total: params.total.toFixed(2),
+    environment,
+    action: "preload",
     order_no: params.orderNumber,
     cust_id: params.customerEmail || "",
     dynamic_descriptor: descriptor,
     language: "en",
-    ask_cvv: "Y",
-    email: params.customerEmail || "",
-    cancel_url: `${params.siteUrl}/order/cancel`,
-    return_url: `${params.siteUrl}/order/success`,
-  });
+  };
+  payload.billing_details = params.billingDetails;
+  if (params.customerEmail || params.customerName) {
+    const name = (params.customerName || "").trim();
+    const space = name.indexOf(" ");
+    payload.contact_details = {
+      ...(space > 0
+        ? { first_name: name.slice(0, space), last_name: name.slice(space + 1) }
+        : name
+          ? { first_name: name }
+          : {}),
+      ...(params.customerEmail ? { email: params.customerEmail } : {}),
+    };
+  }
 
-  const res = await fetch(`${base}/chkt/request/ticket.php`, {
+  const res = await fetch(`${base}/chkt/request/request.php`, {
     method: "POST",
-    headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    body,
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
   });
 
   const text = await res.text();
@@ -87,10 +125,7 @@ export async function requestMonerisCheckoutTicket(params: {
 
   const ticket = parsed.response?.ticket;
   if (!ticket || parsed.response?.success !== "true") {
-    const msg =
-      parsed.response?.error?.message ||
-      "Unable to start Moneris Checkout session.";
-    throw new Error(msg);
+    throw new Error(formatMonerisError(parsed.response?.error));
   }
 
   return { ticket };

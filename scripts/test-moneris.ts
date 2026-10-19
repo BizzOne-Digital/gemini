@@ -34,6 +34,14 @@ async function main() {
         orderNumber: `TEST-${Date.now()}`,
         total: 1.0,
         customerEmail: "test@example.com",
+        customerName: "Test Customer",
+        billingDetails: {
+          address_1: "504 Albert St",
+          city: "Waterloo",
+          province: "ON",
+          country: "CA",
+          postal_code: "N2L 3V4",
+        },
         siteUrl: process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000",
       });
       console.log(`\nResult: OK on ${env} — ticket received (${ticket.slice(0, 8)}…)`);

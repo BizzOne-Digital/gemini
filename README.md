@@ -60,7 +60,7 @@ Default admin (after seed): see `ADMIN_SEED_EMAIL` / `ADMIN_SEED_PASSWORD` in `.
 | `MONERIS_ENV` | Yes (payments) | `prod` for live store |
 | `MONERIS_STORE_ID` | Yes (payments) | From Moneris gateway settings |
 | `MONERIS_API_TOKEN` | Yes (payments) | From Moneris gateway settings |
-| `MONERIS_CHECKOUT_ID` | Yes (payments) | From Moneris Checkout admin |
+| `MONERIS_CHECKOUT_ID` | Yes (payments) | From Moneris Checkout admin (e.g. `chkt…`) |
 | `MONERIS_DYNAMIC_DESCRIPTOR` | Optional | `Homestyle Diner` |
 | `NEXT_PUBLIC_GOOGLE_MAPS_EMBED_URL` | Optional | Map embed on homepage |
 

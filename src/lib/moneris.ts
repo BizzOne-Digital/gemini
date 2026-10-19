@@ -5,8 +5,20 @@
 
 export type MonerisEnv = "qa" | "prod";
 
+/** Live Classic Gateway store IDs (e.g. gwca082325) must use prod, not gatewayt. */
+export function resolveMonerisEnv(): MonerisEnv {
+  const raw = process.env.MONERIS_ENV?.trim().toLowerCase();
+  if (raw === "prod" || raw === "production" || raw === "live") return "prod";
+  if (raw === "qa" || raw === "test" || raw === "sandbox") return "qa";
+
+  const storeId = process.env.MONERIS_STORE_ID?.trim() ?? "";
+  if (/^gwca/i.test(storeId)) return "prod";
+
+  return "qa";
+}
+
 export function getMonerisConfig() {
-  const env = (process.env.MONERIS_ENV === "prod" ? "prod" : "qa") as MonerisEnv;
+  const env = resolveMonerisEnv();
   const storeId = process.env.MONERIS_STORE_ID?.trim();
   const apiToken = process.env.MONERIS_API_TOKEN?.trim();
   const checkoutId = process.env.MONERIS_CHECKOUT_ID?.trim();
@@ -36,13 +48,20 @@ type TicketResponse = {
   response?: {
     success?: string;
     ticket?: string;
-    error?: Record<string, unknown>;
+    error?: Record<string, unknown> | string;
   };
 };
 
-function formatMonerisError(error: Record<string, unknown> | undefined): string {
+function formatMonerisError(
+  error: Record<string, unknown> | string | undefined
+): string {
   if (!error) return "Unable to start Moneris Checkout session.";
-  if (typeof error.message === "string" && error.message) return error.message;
+  if (typeof error === "string") {
+    return monerisErrorHint(error);
+  }
+  if (typeof error.message === "string" && error.message) {
+    return monerisErrorHint(error.message);
+  }
   const parts: string[] = [];
   for (const [key, value] of Object.entries(error)) {
     if (value && typeof value === "object" && "data" in value) {
@@ -52,7 +71,50 @@ function formatMonerisError(error: Record<string, unknown> | undefined): string 
       parts.push(`${key}: ${value}`);
     }
   }
-  return parts.length ? parts.join("; ") : "Unable to start Moneris Checkout session.";
+  const joined = parts.length ? parts.join("; ") : "";
+  return joined
+    ? monerisErrorHint(joined)
+    : "Unable to start Moneris Checkout session.";
+}
+
+function monerisErrorHint(message: string): string {
+  if (/invalid data/i.test(message)) {
+    return (
+      "Moneris rejected the payment session (invalid data). " +
+      "For live store credentials, set MONERIS_ENV=prod in Vercel and redeploy."
+    );
+  }
+  return message;
+}
+
+const CA_PROVINCE: Record<string, string> = {
+  alberta: "AB",
+  "british columbia": "BC",
+  manitoba: "MB",
+  "new brunswick": "NB",
+  "newfoundland and labrador": "NL",
+  "nova scotia": "NS",
+  ontario: "ON",
+  "prince edward island": "PE",
+  quebec: "QC",
+  saskatchewan: "SK",
+  "northwest territories": "NT",
+  nunavut: "NU",
+  yukon: "YT",
+};
+
+export function normalizeCanadianProvince(value: string): string {
+  const trimmed = value.trim();
+  if (/^[A-Za-z]{2}$/.test(trimmed)) return trimmed.toUpperCase();
+  return CA_PROVINCE[trimmed.toLowerCase()] ?? trimmed.slice(0, 2).toUpperCase();
+}
+
+export function normalizeCanadianPostalCode(value: string): string {
+  const compact = value.replace(/\s+/g, "").toUpperCase();
+  if (/^[A-Z]\d[A-Z]\d[A-Z]\d$/.test(compact)) {
+    return `${compact.slice(0, 3)} ${compact.slice(3)}`;
+  }
+  return value.trim().toUpperCase();
 }
 
 export type MonerisBillingDetails = {
@@ -83,6 +145,7 @@ export async function requestMonerisCheckoutTicket(params: {
 
   const base = monerisGatewayBase(env);
   const environment = env === "prod" ? "prod" : "qa";
+  const orderNo = params.orderNumber.replace(/[^A-Za-z0-9_-]/g, "").slice(0, 50);
   const payload: Record<string, unknown> = {
     store_id: storeId,
     api_token: apiToken,
@@ -90,12 +153,17 @@ export async function requestMonerisCheckoutTicket(params: {
     txn_total: params.total.toFixed(2),
     environment,
     action: "preload",
-    order_no: params.orderNumber,
-    cust_id: params.customerEmail || "",
-    dynamic_descriptor: descriptor,
+    order_no: orderNo || params.orderNumber,
+    cust_id: (params.customerEmail || "guest").slice(0, 50),
+    dynamic_descriptor: descriptor.slice(0, 25),
     language: "en",
   };
-  payload.billing_details = params.billingDetails;
+  payload.billing_details = {
+    ...params.billingDetails,
+    province: normalizeCanadianProvince(params.billingDetails.province),
+    postal_code: normalizeCanadianPostalCode(params.billingDetails.postal_code),
+    country: params.billingDetails.country.toUpperCase().slice(0, 2) || "CA",
+  };
   if (params.customerEmail || params.customerName) {
     const name = (params.customerName || "").trim();
     const space = name.indexOf(" ");

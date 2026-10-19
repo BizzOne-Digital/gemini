@@ -9,8 +9,11 @@ import {
   type CartLine,
 } from "@/lib/order-utils";
 import {
+  getMonerisConfig,
   isMonerisConfigured,
   monerisCheckoutUrl,
+  normalizeCanadianPostalCode,
+  normalizeCanadianProvince,
   requestMonerisCheckoutTicket,
 } from "@/lib/moneris";
 
@@ -113,7 +116,8 @@ export async function POST(req: NextRequest) {
       currency: settings.currency || "CAD",
     });
 
-    const postal = body.billingPostalCode.replace(/\s+/g, " ").trim();
+    const postal = normalizeCanadianPostalCode(body.billingPostalCode);
+    const moneris = getMonerisConfig();
     const { ticket } = await requestMonerisCheckoutTicket({
       orderNumber: order.orderNumber,
       total: totals.total,
@@ -122,7 +126,7 @@ export async function POST(req: NextRequest) {
       billingDetails: {
         address_1: settings.address || "504 Albert St",
         city: settings.city || "Waterloo",
-        province: settings.province || "ON",
+        province: normalizeCanadianProvince(settings.province || "ON"),
         country: "CA",
         postal_code: postal,
       },
@@ -135,10 +139,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({
       orderId: order._id.toString(),
       orderNumber: order.orderNumber,
-      checkoutUrl: monerisCheckoutUrl(
-        process.env.MONERIS_ENV === "prod" ? "prod" : "qa",
-        ticket
-      ),
+      checkoutUrl: monerisCheckoutUrl(moneris.env, ticket),
     });
   } catch (err) {
     if (err instanceof z.ZodError) {

@@ -23,8 +23,8 @@ const IMAGE_UPDATES: Record<string, { image: string; imageAlt: string }> = {
     imageAlt: "Group dining at Homestyle Diner Waterloo",
   },
   breakfast: {
-    image: SITE_PHOTOS.foodFishChips,
-    imageAlt: "Classic fish and chips at Homestyle Diner",
+    image: SITE_PHOTOS.breakfastOmelette,
+    imageAlt: "Breakfast omelette with eggs at Homestyle Diner",
   },
   lunch: {
     image: SITE_PHOTOS.catering,

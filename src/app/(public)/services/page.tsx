@@ -38,9 +38,24 @@ const SERVICE_IMAGES: Record<string, string> = {
 };
 
 function getServiceImage(service: ServiceData, index: number): string {
+  const slug = service.slug.toLowerCase();
+  const title = service.title.toLowerCase();
+  if (slug.includes("breakfast") || title.includes("breakfast")) {
+    return SITE_PHOTOS.breakfastOmelette;
+  }
+
   const fallbacks = Object.values(SERVICE_IMAGES);
   const fallback = SERVICE_IMAGES[service.slug] || fallbacks[index % fallbacks.length];
-  if (service.image) return resolveImageSrc(service.image, fallback);
+  if (service.image) {
+    const resolved = resolveImageSrc(service.image, fallback);
+    if (
+      (slug.includes("breakfast") || title.includes("breakfast")) &&
+      /fish/i.test(resolved)
+    ) {
+      return SITE_PHOTOS.breakfastOmelette;
+    }
+    return resolved;
+  }
   return fallback;
 }
 

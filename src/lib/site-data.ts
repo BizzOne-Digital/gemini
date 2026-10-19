@@ -12,6 +12,7 @@ import {
   type SiteSettingsData,
   type NavigationData,
 } from "@/types/site";
+import { normalizeInstagramUrl } from "@/lib/social-urls";
 
 async function safeFetch<T>(fn: () => Promise<T>, fallback: T): Promise<T> {
   try {
@@ -36,6 +37,9 @@ export async function getPublicSiteSettings(): Promise<SiteSettingsData> {
       settings.businessHours?.length > 0
         ? settings.businessHours
         : DEFAULT_SITE_SETTINGS.businessHours,
+    instagramUrl: normalizeInstagramUrl(
+      settings.instagramUrl || DEFAULT_SITE_SETTINGS.instagramUrl
+    ),
   };
 }
 

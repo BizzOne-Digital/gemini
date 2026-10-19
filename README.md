@@ -56,7 +56,12 @@ Default admin (after seed): see `ADMIN_SEED_EMAIL` / `ADMIN_SEED_PASSWORD` in `.
 | `SMTP_USER` | Yes | Gmail address |
 | `SMTP_PASS` | Yes | Gmail App Password |
 | `SMTP_FROM` | Yes | Display name + email |
-| `ADMIN_NOTIFICATION_EMAIL` | Yes | Where form alerts go |
+| `ADMIN_NOTIFICATION_EMAIL` | Yes | `homestylewaterloo@gmail.com` for contact/booking alerts |
+| `MONERIS_ENV` | Yes (payments) | `prod` for live store |
+| `MONERIS_STORE_ID` | Yes (payments) | From Moneris gateway settings |
+| `MONERIS_API_TOKEN` | Yes (payments) | From Moneris gateway settings |
+| `MONERIS_CHECKOUT_ID` | Yes (payments) | From Moneris Checkout admin |
+| `MONERIS_DYNAMIC_DESCRIPTOR` | Optional | `Homestyle Diner` |
 | `NEXT_PUBLIC_GOOGLE_MAPS_EMBED_URL` | Optional | Map embed on homepage |
 
 **Do not** set `ADMIN_SEED_*` in Vercel unless running a one-off seed from your machine against Atlas.

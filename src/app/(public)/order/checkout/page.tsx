@@ -109,18 +109,21 @@ export default function CheckoutPage() {
           />
 
           <Input
-            label="Billing postal code"
+            label="Billing postal code (Canada)"
             required
-            placeholder="e.g. N2L 3V4"
+            placeholder="N2L 3V4"
             autoComplete="postal-code"
+            inputMode="text"
+            pattern="[A-Za-z][0-9][A-Za-z][ -]?[0-9][A-Za-z][0-9]"
+            title="Canadian postal code, e.g. N2L 3V4"
             value={form.billingPostalCode}
             onChange={(e) =>
               setForm({ ...form, billingPostalCode: e.target.value })
             }
           />
           <p className="text-xs text-muted-foreground">
-            Required for card verification (AVS). Use the postal code on your
-            payment card.
+            Required for card verification (AVS). Enter the Canadian postal code
+            on your payment card (not a US ZIP code).
           </p>
 
           <div>

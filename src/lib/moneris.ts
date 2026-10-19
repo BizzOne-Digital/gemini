@@ -46,32 +46,43 @@ export function isMonerisConfigured(): boolean {
 
 type TicketResponse = {
   response?: {
-    success?: string;
+    success?: string | boolean;
     ticket?: string;
     error?: Record<string, unknown> | string;
   };
 };
 
+function collectMonerisErrorParts(value: unknown, prefix = ""): string[] {
+  if (value == null) return [];
+  if (typeof value === "string") {
+    return [prefix ? `${prefix}: ${value}` : value];
+  }
+  if (typeof value !== "object") return [];
+  const obj = value as Record<string, unknown>;
+  if (typeof obj.message === "string" && obj.message) {
+    const msg = obj.message;
+    return [prefix ? `${prefix}: ${msg}` : msg];
+  }
+  if (typeof obj.data === "string" && obj.data) {
+    return [prefix ? `${prefix}: ${obj.data}` : obj.data];
+  }
+  const parts: string[] = [];
+  for (const [key, nested] of Object.entries(obj)) {
+    const path = prefix ? `${prefix}.${key}` : key;
+    parts.push(...collectMonerisErrorParts(nested, path));
+  }
+  return parts;
+}
+
 function formatMonerisError(
   error: Record<string, unknown> | string | undefined
 ): string {
   if (!error) return "Unable to start Moneris Checkout session.";
-  if (typeof error === "string") {
-    return monerisErrorHint(error);
-  }
-  if (typeof error.message === "string" && error.message) {
-    return monerisErrorHint(error.message);
-  }
-  const parts: string[] = [];
-  for (const [key, value] of Object.entries(error)) {
-    if (value && typeof value === "object" && "data" in value) {
-      const data = (value as { data?: string }).data;
-      if (data) parts.push(`${key}: ${data}`);
-    } else if (typeof value === "string") {
-      parts.push(`${key}: ${value}`);
-    }
-  }
-  const joined = parts.length ? parts.join("; ") : "";
+  const parts =
+    typeof error === "string"
+      ? collectMonerisErrorParts(error)
+      : collectMonerisErrorParts(error);
+  const joined = parts.join("; ");
   return joined
     ? monerisErrorHint(joined)
     : "Unable to start Moneris Checkout session.";
@@ -115,6 +126,11 @@ export function normalizeCanadianPostalCode(value: string): string {
     return `${compact.slice(0, 3)} ${compact.slice(3)}`;
   }
   return value.trim().toUpperCase();
+}
+
+export function isValidCanadianPostalCode(value: string): boolean {
+  const normalized = normalizeCanadianPostalCode(value);
+  return /^[A-Z]\d[A-Z] \d[A-Z]\d$/.test(normalized);
 }
 
 export type MonerisBillingDetails = {
@@ -191,8 +207,15 @@ export async function requestMonerisCheckoutTicket(params: {
     throw new Error(`Moneris ticket request failed: ${text.slice(0, 200)}`);
   }
 
+  const success = parsed.response?.success;
+  const ok = success === "true" || success === true;
   const ticket = parsed.response?.ticket;
-  if (!ticket || parsed.response?.success !== "true") {
+  if (!ticket || !ok) {
+    console.error("Moneris preload failed", {
+      env: environment,
+      success,
+      error: parsed.response?.error,
+    });
     throw new Error(formatMonerisError(parsed.response?.error));
   }
 

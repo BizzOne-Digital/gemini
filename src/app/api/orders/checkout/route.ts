@@ -11,6 +11,7 @@ import {
 import {
   getMonerisConfig,
   isMonerisConfigured,
+  isValidCanadianPostalCode,
   monerisCheckoutUrl,
   normalizeCanadianPostalCode,
   normalizeCanadianProvince,
@@ -37,8 +38,12 @@ const checkoutSchema = z.object({
   pickupTime: z.string().max(120).optional(),
   billingPostalCode: z
     .string()
-    .min(5, "Billing postal code is required for card verification")
-    .max(10),
+    .trim()
+    .min(6, "Billing postal code is required for card verification")
+    .max(10)
+    .refine(isValidCanadianPostalCode, {
+      message: "Enter a valid Canadian postal code (e.g. N2L 3V4)",
+    }),
   notes: z.string().max(1000).optional(),
   lines: z.array(lineSchema).min(1),
 });
@@ -84,9 +89,33 @@ export async function POST(req: NextRequest) {
       shippingFlat: 0,
     });
 
+    if (totals.total <= 0) {
+      return NextResponse.json(
+        { error: "Order total must be greater than zero." },
+        { status: 400 }
+      );
+    }
+
     const orderNumber = generateOrderNumber();
     const siteUrl =
       process.env.NEXT_PUBLIC_SITE_URL || "https://www.homestylediner.ca";
+    const postal = normalizeCanadianPostalCode(body.billingPostalCode);
+    const moneris = getMonerisConfig();
+
+    const { ticket } = await requestMonerisCheckoutTicket({
+      orderNumber,
+      total: totals.total,
+      customerEmail: body.customerEmail,
+      customerName: body.customerName,
+      billingDetails: {
+        address_1: settings.address || "504 Albert St",
+        city: settings.city || "Waterloo",
+        province: normalizeCanadianProvince(settings.province || "ON"),
+        country: "CA",
+        postal_code: postal,
+      },
+      siteUrl,
+    });
 
     await connectDB();
 
@@ -114,27 +143,8 @@ export async function POST(req: NextRequest) {
       shipping: totals.shipping,
       total: totals.total,
       currency: settings.currency || "CAD",
+      monerisTicket: ticket,
     });
-
-    const postal = normalizeCanadianPostalCode(body.billingPostalCode);
-    const moneris = getMonerisConfig();
-    const { ticket } = await requestMonerisCheckoutTicket({
-      orderNumber: order.orderNumber,
-      total: totals.total,
-      customerEmail: body.customerEmail,
-      customerName: body.customerName,
-      billingDetails: {
-        address_1: settings.address || "504 Albert St",
-        city: settings.city || "Waterloo",
-        province: normalizeCanadianProvince(settings.province || "ON"),
-        country: "CA",
-        postal_code: postal,
-      },
-      siteUrl,
-    });
-
-    order.monerisTicket = ticket;
-    await order.save();
 
     return NextResponse.json({
       orderId: order._id.toString(),

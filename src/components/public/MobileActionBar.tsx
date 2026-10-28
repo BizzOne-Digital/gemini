@@ -1,6 +1,7 @@
 "use client";
 
 import { Phone, MapPin, ShoppingBag } from "lucide-react";
+import { externalOrderUrl } from "@/lib/external-ordering";
 import { formatPhone } from "@/lib/utils";
 import type { SiteSettingsData } from "@/types/site";
 import { getFullAddress, getPhoneHref } from "@/types/site";
@@ -41,17 +42,11 @@ export function MobileActionBar({ settings }: MobileActionBarProps) {
           href={
             settings.onlineOrderingEnabled
               ? "/order/cart"
-              : settings.orderOnlineUrl || "/menu"
+              : externalOrderUrl(settings)
           }
-          target={
-            !settings.onlineOrderingEnabled && settings.orderOnlineUrl
-              ? "_blank"
-              : undefined
-          }
+          target={settings.onlineOrderingEnabled ? undefined : "_blank"}
           rel={
-            !settings.onlineOrderingEnabled && settings.orderOnlineUrl
-              ? "noopener noreferrer"
-              : undefined
+            settings.onlineOrderingEnabled ? undefined : "noopener noreferrer"
           }
           className="flex flex-col items-center gap-1 py-3 text-espresso transition-colors active:bg-soft-oat"
         >
@@ -59,9 +54,7 @@ export function MobileActionBar({ settings }: MobileActionBarProps) {
           <span className="text-[0.65rem] font-semibold uppercase tracking-wide">
             {settings.onlineOrderingEnabled
               ? "Order"
-              : settings.orderOnlineUrl
-                ? "Pickup Order"
-                : "Menu"}
+              : "Order Online"}
           </span>
         </a>
       </div>

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { ShoppingCart } from "lucide-react";
 import { useCart } from "@/components/providers/CartProvider";
+import { externalOrderUrl } from "@/lib/external-ordering";
 import { cn } from "@/lib/utils";
 
 type Props = {
@@ -42,14 +43,13 @@ export function OrderNavLinks({
     );
   }
 
-  const orderHref = orderOnlineUrl || "/menu";
-  const orderExternal = !!orderOnlineUrl;
+  const orderHref = externalOrderUrl({ orderOnlineUrl });
 
   return (
     <Link
       href={orderHref}
-      target={orderExternal ? "_blank" : undefined}
-      rel={orderExternal ? "noopener noreferrer" : undefined}
+      target="_blank"
+      rel="noopener noreferrer"
       className={cn(
         mobile
           ? "inline-flex h-12 items-center justify-center gap-2 rounded-full bg-heritage-green text-sm font-semibold uppercase tracking-wider text-warm-cream"
@@ -58,7 +58,7 @@ export function OrderNavLinks({
       )}
     >
       <ShoppingCart className="h-4 w-4" />
-      {orderExternal ? "Order Pickup" : "Order Online"}
+      Order Online
     </Link>
   );
 }

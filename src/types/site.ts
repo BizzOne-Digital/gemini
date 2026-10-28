@@ -166,8 +166,9 @@ export const DEFAULT_SITE_SETTINGS: SiteSettingsData = {
   businessHours: DEFAULT_BUSINESS_HOURS,
   facebookUrl: "https://www.facebook.com/Homestyledinerwaterloo/",
   instagramUrl: "https://www.instagram.com/homestyle.diner/?hl=en",
-  orderOnlineUrl: "",
-  onlineOrderingEnabled: true,
+  orderOnlineUrl:
+    "https://www.restaurantlogin.com/ordering/restaurant/menu?company_uid=f5077a18-3159-4ce0-9ec1-64e233bf85d6&restaurant_uid=f211a691-397f-4cc8-85d7-bd5ae174bf14&facebook=true",
+  onlineOrderingEnabled: false,
   shopEnabled: true,
   deliveryEnabled: false,
   orderTaxRate: 0.13,

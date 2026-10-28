@@ -12,6 +12,7 @@ import {
   Phone,
 } from "lucide-react";
 import type { Metadata } from "next";
+import { externalOrderUrl } from "@/lib/external-ordering";
 import { buildPageMetadata } from "@/lib/metadata";
 import {
   getPublicSiteSettings,
@@ -96,10 +97,14 @@ export default async function HomePage() {
         secondaryCta={{
           label:
             heroSection?.ctaSecondaryLabel ||
-            (settings.orderOnlineUrl ? "Order Pickup" : "Book a Table"),
+            (!settings.onlineOrderingEnabled
+              ? "Order Online"
+              : "Book a Table"),
           href:
             heroSection?.ctaSecondaryHref ||
-            (settings.orderOnlineUrl ? settings.orderOnlineUrl : "/booking"),
+            (!settings.onlineOrderingEnabled
+              ? externalOrderUrl(settings)
+              : "/booking"),
         }}
       />
 
@@ -634,14 +639,14 @@ export default async function HomePage() {
                   next gathering. We can&apos;t wait to serve you.
                 </p>
                 <div className="mt-8 flex flex-wrap justify-center gap-4">
-                  {settings.orderOnlineUrl ? (
+                  {!settings.onlineOrderingEnabled ? (
                     <Button
-                      href={settings.orderOnlineUrl}
+                      href={externalOrderUrl(settings)}
                       variant="secondary"
                       size="lg"
                       external
                     >
-                      Order Pickup
+                      Order Online
                     </Button>
                   ) : (
                     <Button href="/menu" variant="secondary" size="lg">

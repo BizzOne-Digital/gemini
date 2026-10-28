@@ -7,6 +7,7 @@ import {
   getPublicSiteSettings,
 } from "@/lib/site-data";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { ExternalOrderBanner } from "@/components/public/ExternalOrderBanner";
 import { MenuBrowserWithCart } from "@/components/public/MenuBrowserWithCart";
 import { FadeIn } from "@/components/public/animations/FadeIn";
 import { BreadcrumbStructuredData } from "@/components/seo/StructuredData";
@@ -98,6 +99,7 @@ export default async function MenuPage({ searchParams }: MenuPageProps) {
 
       <section className="section-safe py-12 sm:py-16 lg:py-20">
         <div className="container-diner">
+          <ExternalOrderBanner settings={settings} />
           <Suspense fallback={<div className="h-40 animate-pulse rounded-2xl bg-soft-oat/50" />}>
             <MenuBrowserWithCart
               categories={categories}

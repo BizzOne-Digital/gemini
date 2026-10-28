@@ -1,6 +1,7 @@
 import "./load-env";
 import mongoose from "mongoose";
 import { MenuCategory, MenuItem, Service, SiteSettings } from "../src/models";
+import { RESTAURANT_LOGIN_ORDER_URL } from "../src/lib/external-ordering";
 import { SITE_PHOTOS } from "../src/lib/site-photos";
 import { normalizeItemName, slugify } from "../src/lib/utils";
 
@@ -15,12 +16,13 @@ async function patchSettings() {
         notificationEmail: "homestylewaterloo@gmail.com",
         primaryEmail: "homestylewaterloo@gmail.com",
         deliveryEnabled: false,
-        onlineOrderingEnabled: true,
+        onlineOrderingEnabled: false,
+        orderOnlineUrl: RESTAURANT_LOGIN_ORDER_URL,
       },
     },
     { upsert: true }
   );
-  console.log("Site settings patched (Instagram, email, pickup-only).");
+  console.log("Site settings patched (Instagram, email, external ordering link).");
 }
 
 async function patchBreakfastServiceImage() {

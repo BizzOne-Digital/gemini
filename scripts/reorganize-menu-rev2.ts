@@ -145,7 +145,9 @@ async function patchSettings() {
     {
       $set: {
         instagramUrl: "https://www.instagram.com/homestyle.diner/?hl=en",
-        onlineOrderingEnabled: true,
+        onlineOrderingEnabled: false,
+        orderOnlineUrl:
+          "https://www.restaurantlogin.com/ordering/restaurant/menu?company_uid=f5077a18-3159-4ce0-9ec1-64e233bf85d6&restaurant_uid=f211a691-397f-4cc8-85d7-bd5ae174bf14&facebook=true",
         shopEnabled: true,
         deliveryEnabled: false,
         notificationEmail: "homestylewaterloo@gmail.com",
@@ -153,7 +155,7 @@ async function patchSettings() {
     },
     { upsert: true }
   );
-  console.log("Site settings updated (Instagram URL).");
+  console.log("Site settings updated (Instagram, external ordering).");
 }
 
 async function main() {
